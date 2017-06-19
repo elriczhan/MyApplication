@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">test</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="border">border</string>
+    <string name="shape">shape</string>
+    <string name="circle">circl</string>
+    <string name="square">square</string>
+    <string name="color">color</string>
+    <string name="defaultColor">defaultColor</string>
+    <string name="red">red</string>
+    <string name="green">green</string>
+    <string name="blue">blue</string>
+
+    <string name="expanded">I\'m the expanded notification.\nCollapse me!</string>
+    <string name="collapsed">I\'m the collapsed notification.\nCreated at: %s</string>
+    <string name="show_notification">Show Notification</string>
+    <string name="custom_notification">I\'m a custom notification.</string>
+
+    <string name="intro_text">This sample demonstrates how a notification is created using the
+        <b>NotificationCompatBuilder</b>
+        with a custom content view. The layout of the notification is defined as a
+        layout resource and inflated as a <b>RemoteViews</b> object.
+        \n\nOn API level 16 and above, a different layout is inflated and set as
+        the <i>big content view</i>, which is used when the notification is expanded.
+        \n\n<b>Use the button below to create the notification.
+        \n\nIf your device is running Jelly Bean or above, try expanding or collapsing
+        the notification to see the different layouts.</b>
+    </string>
+    <string name="collapsed_image">A single Android robot waving. Symbolises a collapsed
+        notification.
+    </string>
+    <string name="expanded_image">Two Androids on top of each other. Symbolises an expanded
+        notification.
+    </string>
+    <string name="heads_up_notification_description">description</string>
+    <string name="use_heads_up_notification_where_possible">where_posiible</string>
+</resources>
