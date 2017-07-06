@@ -7,5 +7,5 @@ package com.example.xinshei.myapplication.mvp.base;
 public interface BaseMVPView {
     void showLoading();
 
-    void hideLoding();
+    void hideLoading();
 }

@@ -27,7 +27,7 @@ public class loginPresenter extends IloginPressenter {
                 } else {
                     loginView.showResult("try again!!!!");
                 }
-                loginView.hideLoding();
+                loginView.hideLoading();
             }
         }.start();
 

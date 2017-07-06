@@ -146,19 +146,39 @@
 
             <Button
                 android:id="@+id/zxing"
-                android:text="zxing"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="zxing" />
+
             <Button
                 android:id="@+id/picker"
-                android:text="picker"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="picker" />
+
             <Button
                 android:id="@+id/error"
-                android:text="error"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="error" />
+
+            <Button
+                android:id="@+id/kotlin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kotlin" />
+
+            <Button
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="progress" />
+
+            <Button
+                android:id="@+id/timeline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="timeline" />
 
         </LinearLayout>
 

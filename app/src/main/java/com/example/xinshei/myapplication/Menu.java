@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
+import com.example.xinshei.myapplication.kotlin.kotlin;
 import com.example.xinshei.myapplication.mvp.LoginView;
 import com.example.xinshei.myapplication.zxing.zxingActivity;
 import com.umeng.message.PushAgent;
@@ -122,6 +123,20 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+        findViewById(R.id.timeline).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Menu.this, TimeLine.class));
+            }
+        });
+
+        findViewById(R.id.progress).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Menu.this, progress.class));
+            }
+        });
+
         findViewById(R.id.zxing).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +169,12 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+        findViewById(R.id.kotlin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Menu.this, kotlin.class));
+            }
+        });
 
         findViewById(R.id.picker).setOnClickListener(new View.OnClickListener() {
             @Override

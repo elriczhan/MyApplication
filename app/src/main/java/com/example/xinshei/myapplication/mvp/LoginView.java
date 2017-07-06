@@ -58,7 +58,7 @@ public class LoginView extends BaseMVPActivity<ILoginView, IloginPressenter> imp
     }
 
     @Override
-    public void hideLoding() {
+    public void hideLoading() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
