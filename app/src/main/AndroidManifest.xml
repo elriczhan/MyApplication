@@ -25,16 +25,7 @@
         <activity
             android:name=".indicator"
             android:theme="@style/StyledIndicators" />
-        <activity android:name=".Menu">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <!-- 关键部分 开始 -->
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <!-- 关键部分 结束 -->
-            </intent-filter>
-        </activity>
+        <activity android:name=".Menu" />
         <activity android:name=".DestroyAnimate" />
         <activity android:name=".shineButton" />
         <activity android:name=".notification" />
@@ -68,7 +59,20 @@
         <service android:name=".uninstall.UnInstallServer" />
 
         <activity android:name=".progress" />
-        <activity android:name=".TimeLine"></activity>
+        <activity android:name=".TimeLine" />
+        <activity android:name=".BaiduLoadingActivity" />
+        <activity android:name=".CardLayoutActivity" />
+        <activity android:name=".RVMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <!-- 关键部分 开始 -->
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <!-- 关键部分 结束 -->
+            </intent-filter>
+        </activity>
+        <activity android:name=".FlowerActivity"></activity>
     </application>
 
 </manifest>

@@ -136,4 +136,9 @@
         <attr name="vertex_text_offset" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="BaiduLoading">
+        <attr name="color" format="color"/>
+        <attr name="text" format="string"/>
+    </declare-styleable>
+
 </resources>

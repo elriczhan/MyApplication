@@ -137,6 +137,13 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+        findViewById(R.id.loading).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Menu.this, BaiduLoadingActivity.class));
+            }
+        });
+
         findViewById(R.id.zxing).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
