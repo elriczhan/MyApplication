@@ -11,7 +11,9 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <application
         android:name=".app"
@@ -72,7 +74,19 @@
                 <!-- 关键部分 结束 -->
             </intent-filter>
         </activity>
-        <activity android:name=".FlowerActivity"></activity>
+        <activity android:name=".FlowerActivity" />
+        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".VideoWallPaperActivity"></activity>
+        <service android:name=".VideoWallPaper"
+            android:permission="android.permission.BIND_WALLPAPER"
+            >
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService"/>
+            </intent-filter>
+            <meta-data android:name="android.service.wallpaper"
+                android:resource="@xml/videowallpaper"
+                />
+        </service>
     </application>
 
 </manifest>

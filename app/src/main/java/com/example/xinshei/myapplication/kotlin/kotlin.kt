@@ -10,7 +10,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.example.xinshei.myapplication.R
-import com.example.xinshei.myapplication.R.id.asd
 
 class kotlin : AppCompatActivity() {
 
@@ -50,7 +49,7 @@ class kotlin : AppCompatActivity() {
         listall()
 
 
-        val asd = findViewById(asd) as Button
+        val asd = findViewById(R.id.asd) as Button
         asd.setOnClickListener {
             val tv2 = TextView(this)
             tv2.setTextColor(Color.RED)

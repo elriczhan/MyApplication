@@ -31,9 +31,16 @@ public class RVMenu extends AppCompatActivity {
         list.add(Menu.class);
         list.add(CardLayoutActivity.class);
         list.add(FlowerActivity.class);
+        list.add(CameraActivity.class);
+        list.add(VideoWallPaperActivity.class);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new rvAdapter());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
 

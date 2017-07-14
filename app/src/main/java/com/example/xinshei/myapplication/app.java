@@ -13,11 +13,13 @@ import com.umeng.message.PushAgent;
  */
 
 public class app extends Application {
+    public static app app;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
-
+        app = this;
 //        CrashHandler.getInstance().init(this);
 //        CaocConfig.Builder.create()
 //                .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
