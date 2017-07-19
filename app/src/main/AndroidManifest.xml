@@ -90,9 +90,6 @@
                 android:resource="@xml/videowallpaper" />
         </service>
 
-        <activity
-            android:name=".DialogActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>
