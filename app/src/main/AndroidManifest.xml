@@ -75,18 +75,24 @@
             </intent-filter>
         </activity>
         <activity android:name=".FlowerActivity" />
-        <activity android:name=".CameraActivity"></activity>
-        <activity android:name=".VideoWallPaperActivity"></activity>
-        <service android:name=".VideoWallPaper"
-            android:permission="android.permission.BIND_WALLPAPER"
-            >
+        <activity android:name=".CameraActivity" />
+        <activity android:name=".VideoWallPaperActivity" />
+
+        <service
+            android:name=".VideoWallPaper"
+            android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
-                <action android:name="android.service.wallpaper.WallpaperService"/>
+                <action android:name="android.service.wallpaper.WallpaperService" />
             </intent-filter>
-            <meta-data android:name="android.service.wallpaper"
-                android:resource="@xml/videowallpaper"
-                />
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/videowallpaper" />
         </service>
+
+        <activity
+            android:name=".DialogActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>
