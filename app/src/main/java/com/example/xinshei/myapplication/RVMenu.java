@@ -33,7 +33,7 @@ public class RVMenu extends AppCompatActivity {
         list.add(FlowerActivity.class);
         list.add(CameraActivity.class);
         list.add(VideoWallPaperActivity.class);
-        //版本管理测试 test1
+        //版本管理测试 test12
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new rvAdapter());
     }
