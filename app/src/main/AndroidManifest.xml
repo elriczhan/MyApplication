@@ -90,6 +90,7 @@
                 android:resource="@xml/videowallpaper" />
         </service>
 
+        <activity android:name=".UltraPullToRefreshActivity"></activity>
     </application>
 
 </manifest>
