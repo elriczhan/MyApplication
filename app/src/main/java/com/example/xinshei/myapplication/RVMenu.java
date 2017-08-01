@@ -1,6 +1,7 @@
 package com.example.xinshei.myapplication;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.ArrayList;
 
@@ -27,6 +32,11 @@ public class RVMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rvmenu);
         ButterKnife.bind(this);
+
+//        StatusBarUtil.setColor(this, Color.BLUE);
+//        StatusBarUtil.setTransparent(this);
+        StatusBarUtil.setTranslucent(this, 125);
+
         list = new ArrayList<>();
         list.add(Menu.class);
         list.add(CardLayoutActivity.class);
@@ -34,9 +44,30 @@ public class RVMenu extends AppCompatActivity {
         list.add(CameraActivity.class);
         list.add(VideoWallPaperActivity.class);
         list.add(UltraPullToRefreshActivity.class);
+        list.add(PaletteActivity.class);
+        list.add(NFC_Activity.class);
+
+
         //版本管理测试 test123 4 tag2 hahaha22222
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new rvAdapter());
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        ImageView image = new ImageView(this);
+        image.setImageResource(R.drawable.lufei);
+        linearLayout.setBackgroundColor(Color.YELLOW);
+        linearLayout.addView(image);
+
+        SlidingMenu slidingMenu = new SlidingMenu(this);
+        slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT, true);
+        slidingMenu.setMenu(linearLayout);
+        slidingMenu.setMode(SlidingMenu.LEFT);
+        slidingMenu.setShadowWidthRes(R.dimen.activity_horizontal_margin);
+        slidingMenu.setBehindOffsetRes(R.dimen.activity_horizontal_margin);
+        slidingMenu.setFadeDegree(0.35f);
+        slidingMenu.setOffsetFadeDegree(0.4f);
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        slidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
     }
 
     @Override

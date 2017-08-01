@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
     <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
@@ -90,7 +91,9 @@
                 android:resource="@xml/videowallpaper" />
         </service>
 
-        <activity android:name=".UltraPullToRefreshActivity"></activity>
+        <activity android:name=".UltraPullToRefreshActivity" />
+        <activity android:name=".PaletteActivity" />
+        <activity android:name=".NFC_Activity"></activity>
     </application>
 
 </manifest>

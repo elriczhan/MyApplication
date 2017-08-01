@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -30,12 +31,17 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
     private ArrayList<String> list;
     private UltraPullToRefreshActivity.adapter adapter;
 
+    public double DP;
+    public double SP;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ultra_pull_to_refresh);
         ButterKnife.bind(this);
+        DP = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics());
+        SP = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 1, getResources().getDisplayMetrics());
 
         final ImageView imageView = new ImageView(this);
         imageView.setImageResource(R.mipmap.ic_launcher);
@@ -88,7 +94,8 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
                         list.clear();
                         int i1 = random.nextInt(100);
                         for (int i = 0; i < i1; i++) {
-                            list.add(random.nextInt(10) + "new position: " + i);
+                            list.add(random.nextInt(10) + "new SP value: " + (i * SP)
+                                    + " and :" + TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, i, getResources().getDisplayMetrics()));
                         }
                         adapter.notifyDataSetChanged();
 //                        textView.setText(random.nextInt() + " lol");
@@ -100,7 +107,7 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
 
         list = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
-            list.add("position: " + i);
+            list.add("dp times value : " + (int) (i * DP) + " and :" + (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, i, getResources().getDisplayMetrics()));
         }
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyler.setLayoutManager(linearLayoutManager);

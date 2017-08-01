@@ -1,7 +1,12 @@
 package com.example.xinshei.myapplication;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,7 +36,15 @@ public class VideoWallPaperActivity extends AppCompatActivity {
 
         list = new ArrayList<>();
 
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        } else {
+            loadData();
+        }
 
+    }
+
+    private void loadData() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myadapter = new Myadapter();
         recyclerView.setAdapter(myadapter);
@@ -44,20 +57,29 @@ public class VideoWallPaperActivity extends AppCompatActivity {
         }).start();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            loadData();
+        }
+    }
+
     private void listFileMp4File(File file) {
         for (File f : file.listFiles()) {
             if (f.isDirectory()) {
                 listFileMp4File(f);
             } else if (f.getName().endsWith(".mp4")) {
                 list.add(f);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        myadapter.notifyItemInserted(list.size());
+                    }
+                });
             }
         }
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                myadapter.notifyDataSetChanged();
-            }
-        });
+
     }
 
     private class Myadapter extends RecyclerView.Adapter<holder> {
@@ -70,7 +92,7 @@ public class VideoWallPaperActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(holder holder, final int position) {
-            holder.button.setText(list.get(position).getName());
+            holder.button.setText(list.get(position).getAbsolutePath());
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
