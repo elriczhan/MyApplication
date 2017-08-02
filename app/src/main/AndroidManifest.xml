@@ -93,7 +93,9 @@
 
         <activity android:name=".UltraPullToRefreshActivity" />
         <activity android:name=".PaletteActivity" />
-        <activity android:name=".NFC_Activity"></activity>
+        <activity android:name=".NFC_Activity" />
+        <activity android:name=".StartActivity" />
+        <activity android:name=".DragReyclerViewActivity"></activity>
     </application>
 
 </manifest>
