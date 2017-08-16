@@ -48,6 +48,7 @@ public class RVMenu extends AppCompatActivity {
         list.add(NFC_Activity.class);
         list.add(StartActivity.class);
         list.add(DragReyclerViewActivity.class);
+        list.add(CoordinatorLayoutActivity.class);
 
 
         //版本管理测试 test123 4 tag2 hahaha22222

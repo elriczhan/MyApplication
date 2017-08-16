@@ -136,7 +136,7 @@ public class DragReyclerViewActivity extends AppCompatActivity {
     }
 
 
-    private class myAdapter extends RecyclerView.Adapter<viewholder> {
+    public class myAdapter extends RecyclerView.Adapter<viewholder> {
 
         private ImageView footer;
         private Random random = new Random();
@@ -203,7 +203,7 @@ public class DragReyclerViewActivity extends AppCompatActivity {
         }
     }
 
-    private class viewholder extends RecyclerView.ViewHolder {
+    public class viewholder extends RecyclerView.ViewHolder {
         TextView textView;
 
         public void select() {

@@ -162,7 +162,7 @@ public class StatusBarUtil {
     }
 
     /**
-     * 针对根布局是 CoordinatorLayout, 使状态栏半透明
+     * 针对根布局是 CoordinatorLayoutActivity, 使状态栏半透明
      * <p>
      * 适用于图片作为背景的界面,此时需要图片填充到状态栏
      *
