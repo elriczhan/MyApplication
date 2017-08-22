@@ -1,7 +1,11 @@
 package com.example.xinshei.myapplication;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +25,10 @@ public class CoordinatorLayoutActivity extends AppCompatActivity {
     @Bind(R.id.recycler)
     RecyclerView recyclerView;
     private ArrayList<String> list;
+    @Bind(R.id.appbar)
+    AppBarLayout appBarLayout;
+    @Bind(R.id.lufei)
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,30 @@ public class CoordinatorLayoutActivity extends AppCompatActivity {
         for (int i = 0; i < 50; i++) {
             list.add("something " + i);
         }
+
+        AppBarLayout.OnOffsetChangedListener onOffsetChangedListener = new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                float height = -verticalOffset;
+                float totalScrollRange = appBarLayout.getTotalScrollRange();
+                int i = (int) ((height / totalScrollRange) * 255);
+                StatusBarUtil.setColor(CoordinatorLayoutActivity.this, Color.rgb((int) (33 + (height / totalScrollRange) * (255 - 33)), (int) (33 + (height / totalScrollRange) * (255 - 33)), (int) (36 + (height / totalScrollRange) * (255 - 36))));
+            }
+        };
+        appBarLayout.addOnOffsetChangedListener(onOffsetChangedListener);
+
+//        int color = Color.parseColor("#FFFF00");
+//        Drawable wrappedDrawable = DrawableCompat.wrap(getResources().getDrawable(R.mipmap.ic_launcher));
+//        DrawableCompat.setTint(wrappedDrawable, color);
+//        ColorStateList colorStateList = getResources().getColorStateList(R.drawable.image_color);
+//        DrawableCompat.setTintList(wrappedDrawable,colorStateList);
+//        imageView.setImageDrawable(wrappedDrawable);
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
     }
 
 
