@@ -45,8 +45,11 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
 
         final ImageView imageView = new ImageView(this);
         imageView.setImageResource(R.mipmap.ic_launcher);
+
+        View view = View.inflate(this, R.layout.cat_header, null);
+
         //设置自己的样子
-//        ptrFrameLayout.setHeaderView(imageView);
+        ptrFrameLayout.setHeaderView(view);
         ptrFrameLayout.setEnabled(false);
         ptrFrameLayout.setLastUpdateTimeRelateObject(this);
         View contentView = ptrFrameLayout.getContentView();

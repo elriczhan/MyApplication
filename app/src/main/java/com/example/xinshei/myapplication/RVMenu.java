@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.xinshei.myapplication.Dao.GreenDaoLearnActivity;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class RVMenu extends AppCompatActivity {
         list.add(StartActivity.class);
         list.add(DragReyclerViewActivity.class);
         list.add(CoordinatorLayoutActivity.class);
+        list.add(GreenDaoLearnActivity.class);
 
 
         //版本管理测试 test123 4 tag2 hahaha22222

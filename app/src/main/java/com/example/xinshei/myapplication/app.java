@@ -3,6 +3,8 @@ package com.example.xinshei.myapplication;
 import android.app.Application;
 import android.util.Log;
 
+import com.example.xinshei.myapplication.Dao.DaoMaster;
+import com.example.xinshei.myapplication.Dao.DaoSession;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 
@@ -14,6 +16,7 @@ import com.umeng.message.PushAgent;
 
 public class app extends Application {
     public static app app;
+    public static DaoSession daoSession;
 
     @Override
     public void onCreate() {
@@ -55,6 +58,16 @@ public class app extends Application {
                 Log.e("asd", s1);
             }
         });
+
+        /**
+         * green dao stuff
+         */
+        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(getApplicationContext(), "dao.db", null);
+        DaoMaster daoMaster = new DaoMaster(devOpenHelper.getWritableDatabase());
+//        DaoMaster daoMaster = new DaoMaster(devOpenHelper.getEncryptedWritableDb("password"));
+        daoSession = daoMaster.newSession();
+        //如果实体类有更新，那么要调用 daoSession.clear() 清除缓存，才能得到更新。
+        daoSession.clear();
 
     }
 

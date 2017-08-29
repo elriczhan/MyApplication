@@ -96,7 +96,8 @@
         <activity android:name=".NFC_Activity" />
         <activity android:name=".StartActivity" />
         <activity android:name=".DragReyclerViewActivity" />
-        <activity android:name=".CoordinatorLayoutActivity"></activity>
+        <activity android:name=".CoordinatorLayoutActivity" />
+        <activity android:name=".Dao.GreenDaoLearnActivity"></activity>
     </application>
 
 </manifest>
