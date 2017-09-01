@@ -100,8 +100,8 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
 //                imageView.setRotation(360 * ptrIndicator.getCurrentPercent());
                 Log.e("asd", "ptrIndicator.getCurrentPercent()" + ptrIndicator.getCurrentPercent());
                 if (ptrIndicator.getCurrentPercent() < 1) {
-                    theCat.setTranslationY(the30dp * (1 - ptrIndicator.getCurrentPercent()));
-                    theCatPaw.setTranslationY(the60dp * (1 - ptrIndicator.getCurrentPercent() * 1.65f));
+                    theCat.setTranslationY(the20dp * (1 - ptrIndicator.getCurrentPercent()));
+                    theCatPaw.setTranslationY(the30dp * (1 - ptrIndicator.getCurrentPercent() * 1.65f));
                 }
             }
         });
