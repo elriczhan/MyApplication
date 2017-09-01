@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,14 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
 
     public double DP;
     public double SP;
+    private ImageView theCat;
+    private ImageView theCatPaw;
+    private float the30dp;
+    private float the40dp;
+    private float the20dp;
+    private float the60dp;
+    private RelativeLayout.LayoutParams paramsCat;
+    private RelativeLayout.LayoutParams paramsPaw;
 
 
     @Override
@@ -48,17 +58,26 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
 
         View view = View.inflate(this, R.layout.cat_header, null);
 
+        theCat = (ImageView) view.findViewById(R.id.cat);
+        theCatPaw = (ImageView) view.findViewById(R.id.cat_paw);
+
+        the30dp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30f, getResources().getDisplayMetrics());
+        the40dp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40f, getResources().getDisplayMetrics());
+        the20dp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20f, getResources().getDisplayMetrics());
+        the60dp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60f, getResources().getDisplayMetrics());
+
         //设置自己的样子
         ptrFrameLayout.setHeaderView(view);
         ptrFrameLayout.setEnabled(false);
         ptrFrameLayout.setLastUpdateTimeRelateObject(this);
         View contentView = ptrFrameLayout.getContentView();
         Toast.makeText(this, (contentView instanceof RecyclerView) + " is recyclerview", Toast.LENGTH_SHORT).show();
+
         ptrFrameLayout.addPtrUIHandler(new PtrUIHandler() {
             @Override
             public void onUIReset(PtrFrameLayout frame) {
-//                imageView.setRotation(180f);
-//                ptrFrameLayout.setEnabled(false);
+//                theCat.setTranslationY(the30dp);
+//                theCatPaw.setTranslationY(the30dp);
             }
 
             @Override
@@ -78,7 +97,12 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
 
             @Override
             public void onUIPositionChange(PtrFrameLayout frame, boolean isUnderTouch, byte status, PtrIndicator ptrIndicator) {
-                imageView.setRotation(360 * ptrIndicator.getCurrentPercent());
+//                imageView.setRotation(360 * ptrIndicator.getCurrentPercent());
+                Log.e("asd", "ptrIndicator.getCurrentPercent()" + ptrIndicator.getCurrentPercent());
+                if (ptrIndicator.getCurrentPercent() < 1) {
+                    theCat.setTranslationY(the30dp * (1 - ptrIndicator.getCurrentPercent()));
+                    theCatPaw.setTranslationY(the60dp * (1 - ptrIndicator.getCurrentPercent() * 1.65f));
+                }
             }
         });
         ptrFrameLayout.setPtrHandler(new PtrHandler() {
