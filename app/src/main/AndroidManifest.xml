@@ -35,7 +35,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Swipe" />
         <activity android:name=".ChartActivity" />
-        <activity android:name=".mvp.LoginView" />
+        <activity android:name=".mvp.LoginActivity" />
         <activity android:name=".radarActivity" />
         <activity android:name=".radarActivity2" />
         <activity android:name=".kotlin.kotlin" />

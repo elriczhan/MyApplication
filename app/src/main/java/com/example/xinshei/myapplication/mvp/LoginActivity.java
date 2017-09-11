@@ -10,10 +10,9 @@ import android.widget.TextView;
 
 import com.example.xinshei.myapplication.R;
 import com.example.xinshei.myapplication.mvp.base.BaseMVPActivity;
-import com.example.xinshei.myapplication.mvp.interfacesss.ILoginView;
-import com.example.xinshei.myapplication.mvp.interfacesss.IloginPressenter;
+import com.example.xinshei.myapplication.mvp.contract.LoginContract;
 
-public class LoginView extends BaseMVPActivity<ILoginView, IloginPressenter> implements ILoginView {
+public class LoginActivity extends BaseMVPActivity<loginPresenter, loginModel> implements LoginContract.ILoginView {
 
     private EditText username;
     private EditText password;
@@ -42,10 +41,6 @@ public class LoginView extends BaseMVPActivity<ILoginView, IloginPressenter> imp
         });
     }
 
-    @Override
-    public loginPresenter initPresenter() {
-        return new loginPresenter(this);
-    }
 
     @Override
     public void showLoading() {

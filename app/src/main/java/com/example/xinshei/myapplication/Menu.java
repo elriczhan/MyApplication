@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.example.xinshei.myapplication.kotlin.kotlin;
-import com.example.xinshei.myapplication.mvp.LoginView;
+import com.example.xinshei.myapplication.mvp.LoginActivity;
 import com.example.xinshei.myapplication.zxing.zxingActivity;
 import com.umeng.message.PushAgent;
 
@@ -106,7 +106,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         findViewById(R.id.mvp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Menu.this, LoginView.class));
+                startActivity(new Intent(Menu.this, LoginActivity.class));
             }
         });
         findViewById(R.id.radarchart).setOnClickListener(new View.OnClickListener() {

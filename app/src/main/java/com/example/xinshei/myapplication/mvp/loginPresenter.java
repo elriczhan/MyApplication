@@ -2,32 +2,22 @@ package com.example.xinshei.myapplication.mvp;
 
 import android.os.SystemClock;
 
-import com.example.xinshei.myapplication.mvp.interfacesss.ILoginView;
-import com.example.xinshei.myapplication.mvp.interfacesss.IloginPressenter;
+import com.example.xinshei.myapplication.mvp.contract.LoginContract;
 
-public class loginPresenter extends IloginPressenter {
-    private final ILoginView loginView;
-    private final loginModel loginModel;
-    //    public abstract void login();
-
-    public loginPresenter(ILoginView loginView) {
-        this.loginView = loginView;
-        loginModel = new loginModel();
-    }
-
+public class loginPresenter extends LoginContract.LoginPresenter {
     @Override
     public void login() {
-        loginView.showLoading();
+        mView.showLoading();
         new Thread() {
             @Override
             public void run() {
                 SystemClock.sleep(2000);
-                if (loginModel.login(loginView.getUsername(), loginView.getPassword())) {
-                    loginView.showResult("login success");
+                if (mModel.login(mView.getUsername(), mView.getPassword())) {
+                    mView.showResult("login success");
                 } else {
-                    loginView.showResult("try again!!!!");
+                    mView.showResult("try again!!!!");
                 }
-                loginView.hideLoading();
+                mView.hideLoading();
             }
         }.start();
 
