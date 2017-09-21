@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.xinshei.myapplication.kotlin.kotlin;
 import com.example.xinshei.myapplication.mvp.LoginActivity;
 import com.example.xinshei.myapplication.zxing.zxingActivity;
@@ -282,8 +284,13 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 editText.destroyDrawingCache();
                 editText.buildDrawingCache();
                 Bitmap bitmap = editText.getDrawingCache();
-                Glide.with(this).load(R.mipmap.ic_launcher).placeholder(new BitmapDrawable(null, bitmap))
-                        .bitmapTransform(new CropCircleTransformation(this)).into(image);
+                RequestOptions options =
+                        new RequestOptions().centerCrop()
+//                                .bitmapTransform(new CropCircleTransformation(this))
+                        .placeholder(new BitmapDrawable(null, bitmap));
+                Glide.with(this).load(R.mipmap.ic_launcher)
+                        .transition(new DrawableTransitionOptions().crossFade(2000))
+                        .apply(options).into(image);
                 break;
             case R.id.test5:
 //                mDrawerLayout.openDrawer(Gravity.LEFT);

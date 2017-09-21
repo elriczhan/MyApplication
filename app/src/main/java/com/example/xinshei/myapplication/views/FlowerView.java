@@ -1,4 +1,4 @@
-package com.example.xinshei.myapplication;
+package com.example.xinshei.myapplication.views;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -15,6 +15,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+
+import com.example.xinshei.myapplication.R;
 
 /**
  * Created by xinshei on 17/7/10.

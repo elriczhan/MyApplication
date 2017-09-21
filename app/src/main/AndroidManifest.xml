@@ -97,7 +97,12 @@
         <activity android:name=".StartActivity" />
         <activity android:name=".DragReyclerViewActivity" />
         <activity android:name=".CoordinatorLayoutActivity" />
-        <activity android:name=".Dao.GreenDaoLearnActivity"></activity>
+        <activity android:name=".Dao.GreenDaoLearnActivity" />
+        <activity android:name=".FlowLayoutSelectActivity" />
+        <activity android:name=".ScreenShotActivity" />
+        <activity android:name=".DragCardViewActivity" />
+        <activity android:name=".SnakeActivity" />
+        <activity android:name=".newGlide"></activity>
     </application>
 
 </manifest>

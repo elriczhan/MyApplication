@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.LinearInterpolator;
 
+import com.example.xinshei.myapplication.views.BaiduLoading;
+
 public class BaiduLoadingActivity extends AppCompatActivity {
 
     @Override

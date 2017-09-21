@@ -36,7 +36,7 @@ public class RVMenu extends AppCompatActivity {
 
 //        StatusBarUtil.setColor(this, Color.BLUE);
 //        StatusBarUtil.setTransparent(this);
-        StatusBarUtil.setTranslucent(this, 125);
+//        StatusBarUtil.setTranslucent(this, 125);
 
         list = new ArrayList<>();
         list.add(Menu.class);
@@ -51,10 +51,18 @@ public class RVMenu extends AppCompatActivity {
         list.add(DragReyclerViewActivity.class);
         list.add(CoordinatorLayoutActivity.class);
         list.add(GreenDaoLearnActivity.class);
+        list.add(FlowLayoutSelectActivity.class);
+        list.add(ScreenShotActivity.class);
+        list.add(DragCardViewActivity.class);
+        list.add(SnakeActivity.class);
+        list.add(newGlide.class);
 
 
         //版本管理测试 test123 4 tag2 hahaha22222
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        //反着来
+        linearLayoutManager.setReverseLayout(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(new rvAdapter());
 
         LinearLayout linearLayout = new LinearLayout(this);

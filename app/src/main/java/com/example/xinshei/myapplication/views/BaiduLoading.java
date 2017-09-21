@@ -1,4 +1,4 @@
-package com.example.xinshei.myapplication;
+package com.example.xinshei.myapplication.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,6 +12,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+
+import com.example.xinshei.myapplication.R;
 
 public class BaiduLoading extends View {
 
