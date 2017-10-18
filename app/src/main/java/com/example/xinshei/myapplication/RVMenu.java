@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.xinshei.myapplication.Dao.GreenDaoLearnActivity;
+import com.example.xinshei.myapplication.update.UpdateActivity;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.ArrayList;
@@ -56,12 +57,14 @@ public class RVMenu extends AppCompatActivity {
         list.add(DragCardViewActivity.class);
         list.add(SnakeActivity.class);
         list.add(newGlide.class);
+        list.add(ViewControllerActivity.class);
+        list.add(UpdateActivity.class);
 
 
         //版本管理测试 test123 4 tag2 hahaha22222
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //反着来
-        linearLayoutManager.setReverseLayout(true);
+//        linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(new rvAdapter());
 

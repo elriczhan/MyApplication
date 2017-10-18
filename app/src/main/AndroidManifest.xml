@@ -65,16 +65,10 @@
         <activity android:name=".TimeLine" />
         <activity android:name=".BaiduLoadingActivity" />
         <activity android:name=".CardLayoutActivity" />
-        <activity android:name=".RVMenu">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <!-- 关键部分 开始 -->
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <!-- 关键部分 结束 -->
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".RVMenu"
+            android:exported="true"
+            android:launchMode="singleTask"></activity>
         <activity android:name=".FlowerActivity" />
         <activity android:name=".CameraActivity" />
         <activity android:name=".VideoWallPaperActivity" />
@@ -102,7 +96,20 @@
         <activity android:name=".ScreenShotActivity" />
         <activity android:name=".DragCardViewActivity" />
         <activity android:name=".SnakeActivity" />
-        <activity android:name=".newGlide"></activity>
+        <activity android:name=".newGlide" />
+        <activity android:name=".ViewControllerActivity" />
+        <activity android:name=".update.UpdateActivity" />
+        <activity
+            android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <!-- 关键部分 开始 -->
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <!-- 关键部分 结束 -->
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

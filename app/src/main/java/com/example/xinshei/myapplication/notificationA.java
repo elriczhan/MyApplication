@@ -19,11 +19,11 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -33,12 +33,12 @@ import java.util.Date;
 public class notificationA extends Activity {
     /**
      * This sample demonstrates notifications with custom content views.
-     *
+     * <p>
      * <p>On API level 16 and above a big content view is also defined that is used for the
      * 'expanded' notification. The notification is created by the NotificationCompat.Builder.
      * The expanded content view is set directly on the {@link android.app.Notification} once it has been build.
      * (See {@link android.app.Notification#bigContentView}.) </p>
-     *
+     * <p>
      * <p>The content views are inflated as {@link android.widget.RemoteViews} directly from their XML layout
      * definitions using {@link android.widget.RemoteViews#RemoteViews(String, int)}.</p>
      */
@@ -46,8 +46,14 @@ public class notificationA extends Activity {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
         //Create Intent to launch this Activity again if the notification is clicked.
-        Intent i = new Intent(this, MainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //intent  设置这些属性来开启app， 主要是不能 启动的页面 设置他的launchMode要不然，会一直打开，这样的方式参数也不能弄。
+        //或许发送在正价一个PendingIntent 发送一个延迟广播，作为参数的传递。或者打开app页面
+        Intent i = new Intent();
+        i.addCategory(Intent.CATEGORY_LAUNCHER);
+        i.setAction(Intent.ACTION_MAIN);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+//        i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        i.setComponent(new ComponentName(this, SplashActivity.class));
         PendingIntent intent = PendingIntent.getActivity(this, 0, i,
                 PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(intent);

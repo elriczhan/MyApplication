@@ -1,5 +1,6 @@
 package com.example.xinshei.myapplication;
 
+import android.app.Activity;
 import android.app.Application;
 import android.util.Log;
 
@@ -17,6 +18,7 @@ import com.umeng.message.PushAgent;
 public class app extends Application {
     public static app app;
     public static DaoSession daoSession;
+    public static Activity activity;
 
     @Override
     public void onCreate() {

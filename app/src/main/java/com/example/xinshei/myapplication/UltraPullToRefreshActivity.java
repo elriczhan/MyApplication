@@ -1,6 +1,7 @@
 package com.example.xinshei.myapplication;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +10,6 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,11 +38,7 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
     private ImageView theCat;
     private ImageView theCatPaw;
     private float the30dp;
-    private float the40dp;
     private float the20dp;
-    private float the60dp;
-    private RelativeLayout.LayoutParams paramsCat;
-    private RelativeLayout.LayoutParams paramsPaw;
 
 
     @Override
@@ -62,13 +58,11 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
         theCatPaw = (ImageView) view.findViewById(R.id.cat_paw);
 
         the30dp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30f, getResources().getDisplayMetrics());
-        the40dp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40f, getResources().getDisplayMetrics());
         the20dp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20f, getResources().getDisplayMetrics());
-        the60dp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60f, getResources().getDisplayMetrics());
 
         //设置自己的样子
         ptrFrameLayout.setHeaderView(view);
-        ptrFrameLayout.setEnabled(false);
+//        ptrFrameLayout.setEnabled(false);
         ptrFrameLayout.setLastUpdateTimeRelateObject(this);
         View contentView = ptrFrameLayout.getContentView();
         Toast.makeText(this, (contentView instanceof RecyclerView) + " is recyclerview", Toast.LENGTH_SHORT).show();
@@ -108,7 +102,7 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
         ptrFrameLayout.setPtrHandler(new PtrHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return true;
+                return !ViewCompat.canScrollVertically(content, -1);
             }
 
             @Override
@@ -154,27 +148,6 @@ public class UltraPullToRefreshActivity extends AppCompatActivity {
         });
         recyler.setAdapter(adapter);
         adapter.addFooter(image);
-        recyler.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                ptrFrameLayout.setEnabled(linearLayoutManager.findFirstCompletelyVisibleItemPosition() == 0);
-                if (linearLayoutManager.findLastCompletelyVisibleItemPosition() == adapter.getItemCount() - 1) {
-                    Random random = new Random();
-                    int i1 = random.nextInt(10);
-                    for (int i = 0; i < i1; i++) {
-                        list.add(random.nextInt(10) + "more position: " + i);
-                    }
-                    adapter.notifyItemRangeInserted(list.size() - i1, i1);
-                }
-            }
-        });
-
     }
 
     private class adapter extends RecyclerView.Adapter<viewholder> {
