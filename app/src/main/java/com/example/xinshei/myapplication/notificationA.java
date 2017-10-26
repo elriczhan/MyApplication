@@ -43,6 +43,7 @@ public class notificationA extends Activity {
      * definitions using {@link android.widget.RemoteViews#RemoteViews(String, int)}.</p>
      */
     private void createNotification() {
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
         //Create Intent to launch this Activity again if the notification is clicked.
@@ -53,10 +54,14 @@ public class notificationA extends Activity {
         i.setAction(Intent.ACTION_MAIN);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 //        i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        i.setComponent(new ComponentName(this, SplashActivity.class));
-        PendingIntent intent = PendingIntent.getActivity(this, 0, i,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(intent);
+        i.setComponent(new ComponentName(this, RVMenu.class));
+//        PendingIntent intent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent i2 = new Intent();
+        i2.setComponent(new ComponentName(this, notificationA.class));
+
+        Intent[] intents = new Intent[]{i, i2};
+        PendingIntent activities = PendingIntent.getActivities(this, 0, intents, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(activities);
 
         // Sets the ticker text
         builder.setTicker(getResources().getString(R.string.custom_notification));

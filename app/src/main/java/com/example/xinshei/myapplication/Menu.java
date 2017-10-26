@@ -1,5 +1,6 @@
 package com.example.xinshei.myapplication;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -37,12 +38,14 @@ import java.util.Date;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Response;
 import retrofit2.http.GET;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by xinshei on 17/1/23.
@@ -77,6 +80,8 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         ButterKnife.bind(this);
         PushAgent.getInstance(this).onAppStart();
         Log.e("asd", "asd ---------");
+
+        AlertDialog.Builder build = new AlertDialog.Builder(this);
 
         final Button test1 = (Button) findViewById(R.id.test1);
         Button test2 = (Button) findViewById(R.id.test2);
@@ -235,31 +240,120 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
 
         editText.setVisibility(View.INVISIBLE);
 
-        RxManager.Instance().create(asd.class)
+        RxManager.Instance()
+                .create(asd.class)
                 .getStuff()
+//                .compose(RxManager.<Response<String>>RunOnMainThread())
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Response<String>>() {
+                .flatMap(new Function<Response<String>, ObservableSource<Response<String>>>() {
                     @Override
-                    public void onCompleted() {
-
+                    public ObservableSource<Response<String>> apply(Response<String> stringResponse) throws Exception {
+                        Log.e("asd", "??  2" + stringResponse.toString() + Thread.currentThread().getName());
+                        return RxManager.Instance()
+                                .create(asd.class)
+                                .getAsd()
+                                .compose(RxManager.<Response<String>>RunOnMainThread());
+                    }
+                })
+                .subscribe(new Observer<Response<String>>() {
+                    //always go
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.e("asd", "??onSubscribe : " + Thread.currentThread().getName());
                     }
 
+                    //success go
                     @Override
-                    public void onError(Throwable throwable) {
-
+                    public void onNext(Response<String> value) {
+                        Log.e("asd", "??onNext : " + value.body() + Thread.currentThread().getName());
                     }
 
+                    //error go
                     @Override
-                    public void onNext(Response<String> stringResponse) {
+                    public void onError(Throwable e) {
+                        Log.e("asd", "??onError : " + e + Thread.currentThread().getName());
+                    }
 
+                    //after onNext
+                    @Override
+                    public void onComplete() {
+                        Log.e("asd", "??onComplete : " + Thread.currentThread().getName());
                     }
                 });
+//                .subscribe(new Consumer<Response<String>>() {
+//                    @Override
+//                    public void accept(Response<String> o) throws Exception {
+//                        Log.e("asd", "?? is response : " + o.body() + Thread.currentThread().getName());
+//                    }
+//                }, new Consumer<Throwable>() {
+//                    @Override
+//                    public void accept(Throwable throwable) throws Exception {
+//                        Log.e("asd", "?? got error" + throwable + Thread.currentThread().getName());
+//                    }
+//                }, new Action() {
+//                    @Override
+//                    public void run() throws Exception {
+//                        Log.e("asd", "complete!!!!!");
+//                    }
+//                });
+
+
+//        Flowable.create(new FlowableOnSubscribe<Integer>() {
+//            @Override
+//            public void subscribe(FlowableEmitter<Integer> e) throws Exception {
+//                for (int i = 0; ; i++) {
+//                    Log.e("asd", i + " value " + e.requested());
+//                    e.onNext(i);
+//
+//                    if (i == 200) {
+//                        break;
+//                    }
+//                }
+//                e.onComplete();
+//            }
+//        }, BackpressureStrategy.ERROR)
+//                .map(new Function<Integer, Integer>() {
+//                    @Override
+//                    public Integer apply(Integer integer) throws Exception {
+//                        return integer * integer;
+//                    }
+//                })
+////                .compose(RxManager.<Integer>flowable_main_thread())
+//                .subscribe(new Subscriber<Integer>() {
+//                    public Subscription s;
+//
+//                    @Override
+//                    public void onSubscribe(Subscription s) {
+//                        this.s = s;
+//                        Log.e("asd", "Flowable onSubscribe: " + s.toString());
+//                        s.request(1000);
+//                    }
+//
+//                    @Override
+//                    public void onNext(Integer integer) {
+//                        Log.e("asd", "Flowable onNext: " + integer);
+////                        s.request(1);
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable t) {
+//                        Log.e("asd", "Flowable onError: " + t);
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        Log.e("asd", "Flowable onComplete: ");
+//                    }
+//                });
     }
 
     interface asd {
         @GET("tmms/appservices/user/")
-        rx.Observable<Response<String>> getStuff();
+        Observable<Response<String>> getStuff();
+
+        @GET("/api/articles/")
+//        @GET("tmms/appservices/user/")
+        Observable<Response<String>> getAsd();
     }
 
     @Override
@@ -287,7 +381,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 RequestOptions options =
                         new RequestOptions().centerCrop()
 //                                .bitmapTransform(new CropCircleTransformation(this))
-                        .placeholder(new BitmapDrawable(null, bitmap));
+                                .placeholder(new BitmapDrawable(null, bitmap));
                 Glide.with(this).load(R.mipmap.ic_launcher)
                         .transition(new DrawableTransitionOptions().crossFade(2000))
                         .apply(options).into(image);

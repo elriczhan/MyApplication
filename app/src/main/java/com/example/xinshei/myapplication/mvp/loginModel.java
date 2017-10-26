@@ -1,5 +1,6 @@
 package com.example.xinshei.myapplication.mvp;
 
+import android.os.SystemClock;
 import android.text.TextUtils;
 
 import com.example.xinshei.myapplication.mvp.contract.LoginContract;
@@ -9,8 +10,27 @@ import com.example.xinshei.myapplication.mvp.contract.LoginContract;
  */
 
 public class loginModel implements LoginContract.IloginModel {
+
+
     @Override
-    public boolean login(String username, String password) {
-        return TextUtils.equals(username, "123") && TextUtils.equals(password, "123");
+    public void login(final String username, final String password, final LoginListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SystemClock.sleep(2000);
+                if (TextUtils.equals(username, "123") && TextUtils.equals(password, "123")) {
+                    listener.onSuccess();
+                } else {
+                    listener.onFailed();
+                }
+
+            }
+        }).start();
+    }
+
+    public interface LoginListener {
+        void onSuccess();
+
+        void onFailed();
     }
 }

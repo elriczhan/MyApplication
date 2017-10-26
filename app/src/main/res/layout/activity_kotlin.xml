@@ -11,6 +11,18 @@
         android:layout_height="wrap_content"
         android:text="toast" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:text="something"
+        android:id="@+id/something"
+        app:layout_constraintTop_toBottomOf="@id/toast"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/lllayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></LinearLayout>
+
     <LinearLayout
         android:id="@+id/layout"
         android:layout_width="wrap_content"

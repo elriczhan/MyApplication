@@ -14,10 +14,11 @@ import com.example.xinshei.myapplication.RxManager;
 
 import java.io.File;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import retrofit2.Response;
 import retrofit2.http.GET;
-import rx.Observable;
-import rx.Subscriber;
 
 /**
  * Created by xinshei on 2017/10/11.
@@ -37,15 +38,20 @@ public class update {
         Log.e("asd", "??????");
         RxManager.Instance().create(IUpdate.class).getUpdateInfo()
                 .compose(RxManager.<Response<UpdateBean>>RunOnMainThread())
-                .subscribe(new Subscriber<Response<UpdateBean>>() {
+                .subscribe(new Observer<Response<UpdateBean>>() {
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
                         Log.e("asd", "onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.e("asd", "error  " + e.toString());
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

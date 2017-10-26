@@ -41,10 +41,18 @@ public class newGlide extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 rp = progress;
-                Glide.with(newGlide.this).load(R.drawable.lufei).apply(new RequestOptions()
-                        .optionalTransform(new GlideBitmapTranformationRound(rp))).into(image1);
-                Glide.with(newGlide.this).load(R.drawable.lufei).apply(new RequestOptions()
-                        .optionalTransform(new GlideTransformRound(rp))).into(image2);
+
+                Glide.with(newGlide.this)
+                        .load(R.drawable.lufei)
+                        .apply(new RequestOptions()
+                                .optionalTransform(new GlideBitmapTranformationRound(rp)))
+                        .into(image1);
+
+                Glide.with(newGlide.this)
+                        .load(R.drawable.lufei)
+                        .apply(new RequestOptions()
+                                .optionalTransform(new GlideTransformRound(rp)))
+                        .into(image2);
             }
 
             @Override

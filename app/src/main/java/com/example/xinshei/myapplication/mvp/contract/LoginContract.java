@@ -3,6 +3,7 @@ package com.example.xinshei.myapplication.mvp.contract;
 import com.example.xinshei.myapplication.mvp.base.BaseMVPView;
 import com.example.xinshei.myapplication.mvp.base.BaseModel;
 import com.example.xinshei.myapplication.mvp.base.BasePresenter;
+import com.example.xinshei.myapplication.mvp.loginModel;
 
 public interface LoginContract {
 
@@ -11,7 +12,7 @@ public interface LoginContract {
     }
 
     interface IloginModel extends BaseModel {
-        boolean login(String username, String password);
+        void login(String username, String password, final loginModel.LoginListener listener);
     }
 
     interface ILoginView extends BaseMVPView {
