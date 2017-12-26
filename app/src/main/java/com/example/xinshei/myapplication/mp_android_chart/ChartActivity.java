@@ -138,7 +138,8 @@ public class ChartActivity extends Activity {
             set1 = new LineDataSet(values, null);
             set1.setColor(Color.parseColor("#153A62"));
             set1.setCircleColor(Color.parseColor("#153A62"));
-            set1.setCircleRadius(1.5f);
+            set1.setDrawCircleHole(false);
+            set1.setCircleRadius(1f);
             set1.setLineWidth(3f);
             set1.setValueTextSize(0f);
             set1.setFormLineWidth(1f);
