@@ -28,7 +28,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.xinshei.myapplication.kotlin.kotlin;
+import com.example.xinshei.myapplication.mp_android_chart.ChartActivity;
 import com.example.xinshei.myapplication.mvp.LoginActivity;
+import com.example.xinshei.myapplication.net.RxManager;
 import com.example.xinshei.myapplication.zxing.zxingActivity;
 import com.umeng.message.PushAgent;
 

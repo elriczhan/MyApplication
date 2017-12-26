@@ -34,7 +34,7 @@
         <activity android:name=".notification" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Swipe" />
-        <activity android:name=".ChartActivity" />
+        <activity android:name=".mp_android_chart.ChartActivity" />
         <activity android:name=".mvp.LoginActivity" />
         <activity android:name=".radarActivity" />
         <activity android:name=".radarActivity2" />

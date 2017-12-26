@@ -10,7 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.example.xinshei.myapplication.RxManager;
+import com.example.xinshei.myapplication.net.RxManager;
 
 import java.io.File;
 
