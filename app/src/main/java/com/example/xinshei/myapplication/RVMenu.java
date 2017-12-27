@@ -59,6 +59,7 @@ public class RVMenu extends AppCompatActivity {
         list.add(newGlide.class);
         list.add(ViewControllerActivity.class);
         list.add(UpdateActivity.class);
+        list.add(StatusBarFragmentActivity.class);
 
 
         //版本管理测试 test123 4 tag2 hahaha22222

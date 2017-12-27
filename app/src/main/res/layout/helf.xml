@@ -2,13 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:background="@color/cpb_grey"
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/fragment4"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbara"
+        android:background="@color/cpb_green"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="?android:actionBarSize">
+        <include layout="@layout/toolbar"/>
+    </android.support.v7.widget.Toolbar>
+
+
+    <LinearLayout
+        android:id="@+id/fragment4"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:src="@drawable/lufei"
+            android:scaleType="fitXY"
+            android:layout_height="100dp" />
+    </LinearLayout>
 
 </LinearLayout>

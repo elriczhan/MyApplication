@@ -103,7 +103,7 @@ public class ChartActivity extends Activity {
 
     private void setData(int count, float range) {
 
-        ArrayList<Entry> values = new ArrayList<Entry>();
+        ArrayList<Entry> values = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             Entry entry;
@@ -141,7 +141,7 @@ public class ChartActivity extends Activity {
             set1.setDrawCircleHole(false);
             set1.setCircleRadius(1f);
             set1.setLineWidth(3f);
-            set1.setValueTextSize(0f);
+            set1.setDrawValues(false);
             set1.setFormLineWidth(1f);
             set1.setFormSize(15.f);
 

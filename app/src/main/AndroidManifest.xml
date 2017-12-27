@@ -70,7 +70,7 @@
         <activity
             android:name=".RVMenu"
             android:exported="true"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
         <activity android:name=".FlowerActivity" />
         <activity android:name=".CameraActivity" />
         <activity android:name=".VideoWallPaperActivity" />
@@ -111,6 +111,8 @@
                 <!-- 关键部分 结束 -->
             </intent-filter>
         </activity>
+        <activity android:name=".StatusFragment" />
+        <activity android:name=".StatusBarFragmentActivity"></activity>
     </application>
 
 </manifest>

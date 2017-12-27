@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 public class HelpFragment extends android.app.Fragment {
 
-    private View rootView;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -29,7 +28,9 @@ public class HelpFragment extends android.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.helf, null);
+        View rootView = inflater.inflate(R.layout.helf, null);
+        View viewById = rootView.findViewById(R.id.fragment4);
+        StatusBarUtil.setTranslucentForImageViewInFragment(getActivity(), 100, viewById);
         // getScreenHW();
         return rootView;
     }

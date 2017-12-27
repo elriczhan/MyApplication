@@ -54,6 +54,7 @@ class kotlin : AppCompatActivity() {
 //        val waveview = WaveView(applicationContext) as WaveView
 //        waveview.setBorder(10,Color.BLACK)
 //        layout.addView(waveview)
+
         layout.addView(tv)
         println(method(1, 2))
         println(lol())
