@@ -1,11 +1,12 @@
-package com.example.xinshei.myapplication.mvp.base;
+package com.elriczhan.basecore.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.example.xinshei.myapplication.mvp.utils.TypeUtil;
+import com.elriczhan.basecore.util.TypeUtil;
+
 
 public abstract class BaseMVPActivity<P extends BasePresenter, M extends BaseModel> extends AppCompatActivity {
     //    public abstract class BaseMVPActivity<T extends BasePresenter, V extends BaseMVPView> extends AppCompatActivity {

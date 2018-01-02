@@ -11,6 +11,7 @@ class StatusBarFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         StatusBarUtil.setTranslucentForImageViewInFragment(activity, 0, fragment4)
-        return inflater!!.inflate(R.layout.helf, container, false)
+        return inflater?.inflate(R.layout.helf, container, false)
     }
+
 }

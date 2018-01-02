@@ -1,2 +1,2 @@
-include ':app', ':PushSDK', ':MySlidingMenu'
+include ':app', ':PushSDK', ':MySlidingMenu', ':BaseCore'
 include ':library'

@@ -1,4 +1,4 @@
-package com.example.xinshei.myapplication.mvp.base;
+package com.elriczhan.basecore.base;
 
 /**
  * Created by xinshei on 2017/9/5.

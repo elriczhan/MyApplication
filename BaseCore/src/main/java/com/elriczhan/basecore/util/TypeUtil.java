@@ -1,4 +1,4 @@
-package com.example.xinshei.myapplication.mvp.utils;
+package com.elriczhan.basecore.util;
 
 import java.lang.reflect.ParameterizedType;
 

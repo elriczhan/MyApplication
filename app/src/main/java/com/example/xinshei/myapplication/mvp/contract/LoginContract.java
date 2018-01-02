@@ -1,13 +1,13 @@
 package com.example.xinshei.myapplication.mvp.contract;
 
-import com.example.xinshei.myapplication.mvp.base.BaseMVPView;
-import com.example.xinshei.myapplication.mvp.base.BaseModel;
-import com.example.xinshei.myapplication.mvp.base.BasePresenter;
+import com.elriczhan.basecore.base.BaseMVPView;
+import com.elriczhan.basecore.base.BaseModel;
+import com.elriczhan.basecore.base.BasePresenter;
 import com.example.xinshei.myapplication.mvp.loginModel;
 
 public interface LoginContract {
 
-    abstract class LoginPresenter extends BasePresenter<LoginContract.ILoginView, LoginContract.IloginModel> {
+    abstract class LoginPresenter extends BasePresenter<ILoginView, IloginModel> {
         public abstract void login();
     }
 

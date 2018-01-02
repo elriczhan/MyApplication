@@ -1,4 +1,4 @@
-package com.example.xinshei.myapplication.StatusBarA;
+package com.elriczhan.basecore.util;
 
 import android.content.Context;
 import android.util.AttributeSet;

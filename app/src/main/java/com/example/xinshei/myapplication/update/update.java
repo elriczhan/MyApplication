@@ -10,7 +10,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.example.xinshei.myapplication.net.RxManager;
+import com.elriczhan.basecore.net.RetrofitManager;
+import com.elriczhan.basecore.util.LogUtil;
 
 import java.io.File;
 
@@ -25,9 +26,9 @@ import retrofit2.http.GET;
  */
 
 public class update {
-    private Handler mHandler = new Handler() {
+    private static Handler mHandler = new Handler() {
         public void handleMessage(final Message msg) {
-            Log.e("asd", msg.what + " percent!!");
+            LogUtil.e("asd", msg.what + " percent!!");
             super.handleMessage(msg);
 
 
@@ -36,17 +37,17 @@ public class update {
 
     public void check(final Context context) {
         Log.e("asd", "??????");
-        RxManager.Instance().create(IUpdate.class).getUpdateInfo()
-                .compose(RxManager.<Response<UpdateBean>>RunOnMainThread())
+        RetrofitManager.getInstance().create(IUpdate.class).getUpdateInfo()
+                .compose(RetrofitManager.<Response<UpdateBean>>RunOnMainThread())
                 .subscribe(new Observer<Response<UpdateBean>>() {
                     @Override
                     public void onComplete() {
-                        Log.e("asd", "onCompleted");
+                        LogUtil.e("asd", "onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("asd", "error  " + e.toString());
+                        LogUtil.e("asd", "error  " + e.toString());
                     }
 
                     @Override

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.CompoundButtonCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -22,7 +21,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
 
-        final WaveView waveView = (WaveView) findViewById(R.id.wave);
+        final WaveView waveView = findViewById(R.id.wave);
         waveView.setBorder(mBorderWidth, mBorderColor);
 
         mWaveHelper = new waveHelper(waveView);
@@ -138,9 +137,9 @@ public class MainActivity extends Activity {
 //                                waveView.setBorder(mBorderWidth, mBorderColor);
                                 waveView.setWaveColor(
 
-                                        Color.RED,Color.TRANSPARENT);
+                                        Color.RED, Color.TRANSPARENT);
                                 int co = Color.parseColor("#666666");
-                                waveView.setBorder(20,co);
+                                waveView.setBorder(20, co);
                                 break;
                         }
                     }

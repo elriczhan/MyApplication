@@ -16,15 +16,15 @@
             android:orientation="vertical">
 
 
-            <com.example.xinshei.myapplication.PaletteImageView
+            <com.dingmouren.paletteimageview.PaletteImageView
                 android:id="@+id/palette"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center_horizontal"
-                app:paletteOffsetX="13dp"
+                app:paletteOffsetX="-10dp"
                 app:paletteOffsetY="13dp"
                 app:palettePadding="40dp"
-                app:paletteSrc="@mipmap/ic_launcher" />
+                app:paletteSrc="@drawable/paw" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                     android:id="@+id/seek2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:max="100" />
+                    android:max="1000" />
             </LinearLayout>
 
             <LinearLayout

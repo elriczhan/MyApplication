@@ -27,10 +27,11 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.elriczhan.basecore.net.RetrofitManager;
+import com.elriczhan.basecore.util.LogUtil;
 import com.example.xinshei.myapplication.kotlin.kotlin;
 import com.example.xinshei.myapplication.mp_android_chart.ChartActivity;
 import com.example.xinshei.myapplication.mvp.LoginActivity;
-import com.example.xinshei.myapplication.net.RxManager;
 import com.example.xinshei.myapplication.zxing.zxingActivity;
 import com.umeng.message.PushAgent;
 
@@ -241,8 +242,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         tb.setTitle("this is title");
 
         editText.setVisibility(View.INVISIBLE);
-
-        RxManager.Instance()
+        RetrofitManager.getInstance()
                 .create(asd.class)
                 .getStuff()
 //                .compose(RxManager.<Response<String>>RunOnMainThread())
@@ -251,35 +251,35 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public ObservableSource<Response<String>> apply(Response<String> stringResponse) throws Exception {
                         Log.e("asd", "??  2" + stringResponse.toString() + Thread.currentThread().getName());
-                        return RxManager.Instance()
+                        return RetrofitManager.getInstance()
                                 .create(asd.class)
                                 .getAsd()
-                                .compose(RxManager.<Response<String>>RunOnMainThread());
+                                .compose(RetrofitManager.<Response<String>>RunOnMainThread());
                     }
                 })
                 .subscribe(new Observer<Response<String>>() {
                     //always go
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.e("asd", "??onSubscribe : " + Thread.currentThread().getName());
+                        LogUtil.e("asd", "??onSubscribe : " + Thread.currentThread().getName());
                     }
 
                     //success go
                     @Override
                     public void onNext(Response<String> value) {
-                        Log.e("asd", "??onNext : " + value.body() + Thread.currentThread().getName());
+                        LogUtil.e("asd", "??onNext : " + value.body() + Thread.currentThread().getName());
                     }
 
                     //error go
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("asd", "??onError : " + e + Thread.currentThread().getName());
+                        LogUtil.e("asd", "??onError : " + e + Thread.currentThread().getName());
                     }
 
                     //after onNext
                     @Override
                     public void onComplete() {
-                        Log.e("asd", "??onComplete : " + Thread.currentThread().getName());
+                        LogUtil.e("asd", "??onComplete : " + Thread.currentThread().getName());
                     }
                 });
 //                .subscribe(new Consumer<Response<String>>() {

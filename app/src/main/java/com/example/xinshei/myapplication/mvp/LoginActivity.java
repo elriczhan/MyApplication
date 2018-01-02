@@ -8,8 +8,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.elriczhan.basecore.base.BaseMVPActivity;
 import com.example.xinshei.myapplication.R;
-import com.example.xinshei.myapplication.mvp.base.BaseMVPActivity;
 import com.example.xinshei.myapplication.mvp.contract.LoginContract;
 
 public class LoginActivity extends BaseMVPActivity<loginPresenter, loginModel> implements LoginContract.ILoginView {

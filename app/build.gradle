@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.example.xinshei.myapplication"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         javaCompileOptions {
@@ -42,22 +42,30 @@ apply plugin: 'kotlin-android-extensions'
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+
     //爆炸效果
+
     //一些动画效果
+
     //progress button
+
     //ripple view
+
     //chart
+
     //网络
     compile project(':PushSDK')
     compile project(':library')
+
     //    compile 'cat.ereza:customactivityoncrash:2.1.0'
 
     //    compile 'com.dingmouren.videowallpaper:videowallpaper:1.0.1'
+
     //    testCompile 'junit:junit:4.12'
     compile project(path: ':MySlidingMenu')
+    implementation project(':BaseCore')
 
     // add library
-
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'tyrantgit:explosionfield:1.0.1'
     compile 'com.sackcentury:shinebutton:0.1.6'
@@ -71,28 +79,37 @@ dependencies {
     compile 'com.android.support:cardview-v7:25.1.1'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
 
-//    compile 'io.reactivex:rxjava:1.1.6'
-//    compile 'io.reactivex:rxandroid:1.0.1'
-//    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
-//    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-//    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-//    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-//    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-//    compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
+    //    compile 'io.reactivex:rxjava:1.1.6'
+
+    //    compile 'io.reactivex:rxandroid:1.0.1'
+
+    //    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+
+    //    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    //    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+
+    //    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+
+    //    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+
+    //    compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
 
     //okhttp
     compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
+
     //gson
-//    compile 'com.google.code.gson:gson:2.8.0'
+
+    //    compile 'com.google.code.gson:gson:2.8.0'
+
     //retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+
     //rxJava
     compile 'io.reactivex.rxjava2:rxjava:2.0.1'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-
-
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile 'com.google.zxing:core:3.3.0'
     compile 'com.journeyapps:zxing-android-embedded:3.5.0'
@@ -104,10 +121,14 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2'
     compile 'com.zhy:flowlayout-lib:1.0.3'
 
+    compile 'com.dingmouren.paletteimageview:paletteimageview:1.0.7'
     //anko
+
     //anko
+
     //kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
     //anko
     compile "org.jetbrains.anko:anko-commons:$anko_version"
     compile "org.jetbrains.anko:anko-coroutines:$anko_version"

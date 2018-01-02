@@ -24,9 +24,9 @@ import java.lang.ref.WeakReference;
  * email:naildingmouren@gmail.com
  */
 
-public class PaletteImageView extends View {
+public class PaletteImageVieww extends View {
 
-    private static final String TAG = PaletteImageView.class.getName();
+    private static final String TAG = PaletteImageVieww.class.getName();
     private static final int MSG = 0x101;
     private static final int DEFAULT_PADDING = 40;
     private static final int DEFAULT_OFFSET = 20;
@@ -46,22 +46,22 @@ public class PaletteImageView extends View {
     private RectF mRectFShadow;
     private Bitmap mRealBitmap;
     private int mOnMeasureHeightMode = -1;
-    public PaletteImageView mInstance;
+    public PaletteImageVieww mInstance;
     private Bitmap mRoundBitmap;
     private RectF mRoundRectF;
     private PorterDuffXfermode mPorterDuffXfermode;
     private OnParseColorListener mListener;
     private Handler mHandler;
 
-    public PaletteImageView(Context context) {
+    public PaletteImageVieww(Context context) {
         this(context, null);
     }
 
-    public PaletteImageView(Context context, AttributeSet attrs) {
+    public PaletteImageVieww(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public PaletteImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PaletteImageVieww(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
@@ -69,13 +69,13 @@ public class PaletteImageView extends View {
 
     private void init(Context context, AttributeSet attrs) {
         this.mInstance = this;
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PaletteImageView);
-        mRadius = a.getDimensionPixelSize(R.styleable.PaletteImageView_paletteRadius, 0);
-        mImgId = a.getResourceId(R.styleable.PaletteImageView_paletteSrc, 0);
-        mPadding = a.getDimensionPixelSize(R.styleable.PaletteImageView_palettePadding, DEFAULT_PADDING);
-        mOffsetX = a.getDimensionPixelSize(R.styleable.PaletteImageView_paletteOffsetX, DEFAULT_OFFSET);
-        mOffsetY = a.getDimensionPixelSize(R.styleable.PaletteImageView_paletteOffsetY, DEFAULT_OFFSET);
-        mShadowRadius = a.getDimensionPixelSize(R.styleable.PaletteImageView_paletteShadowRadius, DEFAULT_SHADOW_RADIUS);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PaletteImageVieww);
+        mRadius = a.getDimensionPixelSize(R.styleable.PaletteImageVieww_paletteRadius, 0);
+        mImgId = a.getResourceId(R.styleable.PaletteImageVieww_paletteSrc, 0);
+        mPadding = a.getDimensionPixelSize(R.styleable.PaletteImageVieww_palettePadding, DEFAULT_PADDING);
+        mOffsetX = a.getDimensionPixelSize(R.styleable.PaletteImageVieww_paletteOffsetX, DEFAULT_OFFSET);
+        mOffsetY = a.getDimensionPixelSize(R.styleable.PaletteImageVieww_paletteOffsetY, DEFAULT_OFFSET);
+        mShadowRadius = a.getDimensionPixelSize(R.styleable.PaletteImageVieww_paletteShadowRadius, DEFAULT_SHADOW_RADIUS);
         a.recycle();
 
         setPadding(mPadding, mPadding, mPadding, mPadding);
@@ -319,30 +319,30 @@ public class PaletteImageView extends View {
     }
 
     public interface OnParseColorListener {
-        void onComplete(PaletteImageView paletteImageView);
+        void onComplete(PaletteImageVieww paletteImageVieww);
 
         void onFail();
     }
 
     private static class MyHandler extends Handler {
-        private final WeakReference<PaletteImageView> mPaletteImageViewWeakReference;
+        private final WeakReference<PaletteImageVieww> mPaletteImageViewWeakReference;
 
-        public MyHandler(PaletteImageView paletteImageView) {
-            mPaletteImageViewWeakReference = new WeakReference<PaletteImageView>(paletteImageView);
+        public MyHandler(PaletteImageVieww paletteImageVieww) {
+            mPaletteImageViewWeakReference = new WeakReference<PaletteImageVieww>(paletteImageVieww);
         }
 
         @Override
         public void handleMessage(Message msg) {
             if (mPaletteImageViewWeakReference.get() != null) {
-                PaletteImageView paletteImageView = mPaletteImageViewWeakReference.get();
-                if (paletteImageView.mOffsetX < DEFAULT_OFFSET)
-                    paletteImageView.mOffsetX = DEFAULT_OFFSET;
-                if (paletteImageView.mOffsetY < DEFAULT_OFFSET)
-                    paletteImageView.mOffsetY = DEFAULT_OFFSET;
-                if (paletteImageView.mShadowRadius < DEFAULT_SHADOW_RADIUS)
-                    paletteImageView.mShadowRadius = DEFAULT_SHADOW_RADIUS;
-                paletteImageView.mPaintShadow.setShadowLayer(paletteImageView.mShadowRadius, paletteImageView.mOffsetX, paletteImageView.mOffsetY, paletteImageView.mMainColor);
-                paletteImageView.invalidate();
+                PaletteImageVieww paletteImageVieww = mPaletteImageViewWeakReference.get();
+                if (paletteImageVieww.mOffsetX < DEFAULT_OFFSET)
+                    paletteImageVieww.mOffsetX = DEFAULT_OFFSET;
+                if (paletteImageVieww.mOffsetY < DEFAULT_OFFSET)
+                    paletteImageVieww.mOffsetY = DEFAULT_OFFSET;
+                if (paletteImageVieww.mShadowRadius < DEFAULT_SHADOW_RADIUS)
+                    paletteImageVieww.mShadowRadius = DEFAULT_SHADOW_RADIUS;
+                paletteImageVieww.mPaintShadow.setShadowLayer(paletteImageVieww.mShadowRadius, paletteImageVieww.mOffsetX, paletteImageVieww.mOffsetY, paletteImageVieww.mMainColor);
+                paletteImageVieww.invalidate();
             }
         }
     }

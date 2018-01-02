@@ -1,4 +1,4 @@
-package com.example.xinshei.myapplication.StatusBarA;
+package com.elriczhan.basecore.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 
 /**
@@ -217,17 +215,6 @@ public class StatusBarUtil {
         setColorForDrawerLayout(activity, drawerLayout, color, DEFAULT_STATUS_BAR_ALPHA);
     }
 
-    /**
-     * 为DrawerLayout 布局设置状态栏变色
-     *
-     * @param activity    需要设置的activity
-     * @param slidingMenu slidingMenu
-     * @param color       状态栏颜色值
-     */
-    public static void setColorForSlidingMenu(Activity activity, SlidingMenu slidingMenu, @ColorInt int color) {
-        setColorForSlidingMenu(activity, slidingMenu, color, DEFAULT_STATUS_BAR_ALPHA);
-    }
-
 
     /**
      * 为DrawerLayout 布局设置状态栏颜色,纯色
@@ -281,47 +268,6 @@ public class StatusBarUtil {
     }
 
     /**
-     * slidingMenu 布局设置状态栏变色
-     *
-     * @param activity       需要设置的activity
-     * @param slidingMenu    slidingMenu
-     * @param color          状态栏颜色值
-     * @param statusBarAlpha 状态栏透明度
-     */
-    public static void setColorForSlidingMenu(Activity activity, SlidingMenu slidingMenu, @ColorInt int color,
-                                              int statusBarAlpha) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-        } else {
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-        // 生成一个状态栏大小的矩形
-        // 添加 statusBarView 到布局中
-        ViewGroup contentLayout = (ViewGroup) slidingMenu.getContent();
-        if (contentLayout.getChildCount() > 0 && contentLayout.getChildAt(0) instanceof StatusBarView) {
-            contentLayout.getChildAt(0).setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
-        } else {
-            StatusBarView statusBarView = createStatusBarView(activity, color);
-            contentLayout.addView(statusBarView, 0);
-        }
-        // 内容布局不是 LinearLayout 时,设置padding top
-        if (!(contentLayout instanceof LinearLayout) && contentLayout.getChildAt(1) != null) {
-            contentLayout.getChildAt(1)
-                    .setPadding(contentLayout.getPaddingLeft(), getStatusBarHeight(activity) + contentLayout.getPaddingTop(),
-                            contentLayout.getPaddingRight(), contentLayout.getPaddingBottom());
-        }
-        // 设置属性
-        setSlidingMenuProperty(slidingMenu, contentLayout);
-        addTranslucentView(activity, statusBarAlpha);
-    }
-
-    /**
      * 设置 DrawerLayout 属性
      *
      * @param drawerLayout              DrawerLayout
@@ -335,19 +281,6 @@ public class StatusBarUtil {
         drawer.setFitsSystemWindows(false);
     }
 
-    /**
-     * 设置 DrawerLayout 属性
-     *
-     * @param slidingMenu               DrawerLayout
-     * @param drawerLayoutContentLayout DrawerLayout 的内容布局
-     */
-    private static void setSlidingMenuProperty(SlidingMenu slidingMenu, ViewGroup drawerLayoutContentLayout) {
-        ViewGroup drawer = (ViewGroup) slidingMenu.getMenu();
-        slidingMenu.setFitsSystemWindows(false);
-        drawerLayoutContentLayout.setFitsSystemWindows(false);
-        drawerLayoutContentLayout.setClipToPadding(true);
-        drawer.setFitsSystemWindows(false);
-    }
 
     /**
      * 为DrawerLayout 布局设置状态栏变色(5.0以下无半透明效果,不建议使用)
@@ -430,33 +363,6 @@ public class StatusBarUtil {
         setDrawerLayoutProperty(drawerLayout, contentLayout);
     }
 
-    /**
-     * 为 DrawerLayout 布局设置状态栏透明
-     *
-     * @param activity    需要设置的activity
-     * @param slidingMenu slidingMenu
-     */
-    public static void setTransparentForSlidingMenu(Activity activity, SlidingMenu slidingMenu) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-        } else {
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-
-        ViewGroup contentLayout = (ViewGroup) slidingMenu.getContent();
-        // 内容布局不是 LinearLayout 时,设置padding top
-        if (!(contentLayout instanceof LinearLayout) && contentLayout.getChildAt(1) != null) {
-            contentLayout.getChildAt(1).setPadding(0, getStatusBarHeight(activity), 0, 0);
-        }
-
-        // 设置属性
-        setSlidingMenuProperty(slidingMenu, contentLayout);
-    }
 
     /**
      * 为 DrawerLayout 布局设置状态栏透明(5.0以上半透明效果,不建议使用)

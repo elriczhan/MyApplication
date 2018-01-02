@@ -1,12 +1,19 @@
 package com.example.xinshei.myapplication;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
+import com.dingmouren.paletteimageview.PaletteImageView;
+
 public class PaletteActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
-    private PaletteImageView paletteImageView;
+    private PaletteImageView paletteImageVieww;
     private SeekBar mSeek1, mSeek2, mSeek3, mSeek4;
 //    private LinearLayout activity_main;
 //    private Toolbar toolbar;
@@ -18,11 +25,34 @@ public class PaletteActivity extends AppCompatActivity implements SeekBar.OnSeek
         initView();
         initListener();
 
+        String url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502771282999&di=5d754e201281f5bd9f1095436a058ba0&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fzhidao%2Fwh%253D450%252C600%2Fsign%3D75aaa91fa444ad342eea8f83e59220c2%2F0bd162d9f2d3572cf556972e8f13632763d0c388.jpg";
+
+
+        Glide.with(this).asBitmap().load(url).into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+
+                if (resource != null) {
+                    paletteImageVieww.setBitmap(resource);
+                }
+            }
+        });
+
     }
+
+    private RequestOptions options =
+            new RequestOptions()
+                    .fitCenter()
+                    .optionalTransform(new GlideBitmapTranformationRound(1))
+//                    .optionalTransform(new GlideTransformRound(100))
+//                                .bitmapTransform(new CropSquareTransformation(getApplicationContext()))
+//                    .placeholder(R.drawable.lufei)
+            ;
 
 
     private void initView() {
-        paletteImageView = (PaletteImageView) findViewById(R.id.palette);
+        paletteImageVieww = (PaletteImageView) findViewById(R.id.palette);
+
 //        paletteImageView.setShadowColor(getResources().getColor(R.color.blue));
         mSeek1 = (SeekBar) findViewById(R.id.seek1);
         mSeek2 = (SeekBar) findViewById(R.id.seek2);
@@ -32,6 +62,18 @@ public class PaletteActivity extends AppCompatActivity implements SeekBar.OnSeek
 //        activity_main = (LinearLayout) findViewById(R.id.activity_main);
 //        setSupportActionBar(toolbar);
 //        toolbar.setTitle("PaletteImageView");
+
+
+//        Glide.with(this).asBitmap().load(R.drawable.lufei).apply(options).into(new SimpleTarget<Bitmap>() {
+//            @Override
+//            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
+//                paletteImageVieww.setBitmap(resource);
+//            }
+//        });
+
+
+
+
     }
 
     private void initListener() {
@@ -58,16 +100,16 @@ public class PaletteActivity extends AppCompatActivity implements SeekBar.OnSeek
     private void show(SeekBar seekBar, int progress) {
         switch (seekBar.getId()) {
             case R.id.seek1:
-                paletteImageView.setPaletteRadius(progress);
+                paletteImageVieww.setPaletteRadius(progress);
                 break;
             case R.id.seek2:
-                paletteImageView.setPaletteShadowRadius(progress);
+                paletteImageVieww.setPaletteShadowRadius(progress);
                 break;
             case R.id.seek3:
-                paletteImageView.setPaletteShadowOffset(progress, 0);
+                paletteImageVieww.setPaletteShadowOffset(progress, 0);
                 break;
             case R.id.seek4:
-                paletteImageView.setPaletteShadowOffset(0, progress);
+                paletteImageVieww.setPaletteShadowOffset(0, progress);
                 break;
         }
     }

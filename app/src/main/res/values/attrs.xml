@@ -142,7 +142,7 @@
     </declare-styleable>
 
 
-    <declare-styleable name="PaletteImageView">
+    <declare-styleable name="PaletteImageVieww">
         <attr name="paletteRadius" format="dimension" />
         <attr name="paletteSrc" format="reference" />
         <attr name="palettePadding" format="dimension" />
