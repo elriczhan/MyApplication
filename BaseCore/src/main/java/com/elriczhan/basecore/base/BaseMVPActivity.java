@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.elriczhan.basecore.ViewController;
+import com.elriczhan.basecore.view.ViewController;
 import com.elriczhan.basecore.utils.LogUtil;
 import com.elriczhan.basecore.utils.TypeUtil;
 

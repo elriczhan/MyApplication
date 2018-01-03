@@ -1,4 +1,4 @@
-package com.elriczhan.basecore;
+package com.elriczhan.basecore.view;
 
 import android.content.Context;
 import android.view.Gravity;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.elriczhan.basecore.R;
 
 /**
  * Created by xinshei on 2017/9/27.
