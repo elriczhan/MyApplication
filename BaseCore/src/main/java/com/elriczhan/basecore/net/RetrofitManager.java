@@ -1,14 +1,20 @@
 package com.elriczhan.basecore.net;
 
-import com.elriczhan.basecore.util.LogUtil;
+import com.elriczhan.basecore.CoreApplication;
+import com.elriczhan.basecore.utils.LogUtil;
+import com.elriczhan.basecore.utils.NetUtil;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -59,6 +65,7 @@ public class RetrofitManager {
                             .readTimeout(5, TimeUnit.SECONDS)
                             .writeTimeout(5, TimeUnit.SECONDS)
                             .addInterceptor(httpLoggingInterceptor)
+                            .addInterceptor(cacheInterceptor)
                             .build();
                 }
             }
@@ -76,6 +83,35 @@ public class RetrofitManager {
                 }
             }).setLevel(HttpLoggingInterceptor.Level.BODY);
 
+    private static final int TIMEOUT_CONNECT = 60; //60秒
+    private static final int TIMEOUT_DISCONNECT = 60 * 60 * 24 * 7; //7天
+
+    private static Interceptor cacheInterceptor = new Interceptor() {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+
+            if (!NetUtil.isNetworkAvailable(CoreApplication.getAppContext())) {
+                Request request = chain.request();
+                //离线的时候为7天的缓存。
+                request = request.newBuilder()
+                        .header("Cache-Control", "public, only-if-cached, max-stale=" + TIMEOUT_DISCONNECT)
+                        .build();
+                return chain.proceed(request);
+            } else {
+                okhttp3.Response originalResponse = chain.proceed(chain.request());
+                String cacheControl = originalResponse.header("Cache-Control");
+                //如果cacheControl为空，就让他TIMEOUT_CONNECT秒的缓存，本例是60秒，方便观察。注意这里的cacheControl是服务器返回的
+                if (cacheControl == null) {
+                    originalResponse = originalResponse.newBuilder()
+                            .header("Cache-Control", "public, max-age=" + TIMEOUT_CONNECT)
+                            .build();
+                    return originalResponse;
+                } else {
+                    return originalResponse;
+                }
+            }
+        }
+    };
 
     /**
      * 节省步骤

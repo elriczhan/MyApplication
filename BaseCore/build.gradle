@@ -29,6 +29,7 @@ dependencies {
 
     implementation 'com.android.support:appcompat-v7:25.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:multidex:1.0.1'
 
     //okhttp
     compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'

@@ -18,13 +18,46 @@
 
             <com.dingmouren.paletteimageview.PaletteImageView
                 android:id="@+id/palette"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_gravity="center_horizontal"
-                app:paletteOffsetX="-10dp"
-                app:paletteOffsetY="13dp"
-                app:palettePadding="40dp"
-                app:paletteSrc="@drawable/paw" />
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:paletteOffsetX="0dp"
+                app:palettePadding="10dp"
+
+                app:paletteShadowRadius="10dp" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/blue"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <com.example.xinshei.myapplication.views.CusImageShadowView
+                    android:id="@+id/cimage"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:background="@color/red"
+                    android:padding="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/lufei" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/green">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:padding="10dp"
+                    android:src="@drawable/lufei" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

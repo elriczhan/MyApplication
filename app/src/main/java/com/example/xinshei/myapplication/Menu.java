@@ -28,7 +28,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.elriczhan.basecore.net.RetrofitManager;
-import com.elriczhan.basecore.util.LogUtil;
+import com.elriczhan.basecore.utils.LogUtil;
 import com.example.xinshei.myapplication.kotlin.kotlin;
 import com.example.xinshei.myapplication.mp_android_chart.ChartActivity;
 import com.example.xinshei.myapplication.mvp.LoginActivity;

@@ -1,4 +1,4 @@
-package com.elriczhan.basecore.util;
+package com.elriczhan.basecore.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

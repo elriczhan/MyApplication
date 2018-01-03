@@ -1,4 +1,4 @@
-package com.elriczhan.basecore.util;
+package com.elriczhan.basecore.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

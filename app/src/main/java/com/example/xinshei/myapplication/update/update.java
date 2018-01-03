@@ -11,7 +11,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.elriczhan.basecore.net.RetrofitManager;
-import com.elriczhan.basecore.util.LogUtil;
+import com.elriczhan.basecore.utils.LogUtil;
 
 import java.io.File;
 
