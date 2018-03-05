@@ -22,11 +22,11 @@ import org.jetbrains.anko.uiThread
 
 class kotlin : AppCompatActivity() {
 
-    private val layout: LinearLayout
-        get() {
-            val layout = findViewById(R.id.layout) as LinearLayout
-            return layout
-        }
+//    private val layout: LinearLayout
+//        get() {
+//            val layout = findViewById(R.id.layout) as LinearLayout
+//            return layout
+//        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class kotlin : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, array, 1)
         }
 
-        val toast = findViewById(R.id.toast) as Button
+//        val toast = findViewById(R.id.toast) as Button
         toast.setOnClickListener {
             Toast.makeText(applicationContext, "showing toast", Toast.LENGTH_SHORT).show()
         }
@@ -62,7 +62,7 @@ class kotlin : AppCompatActivity() {
         listall()
 
 
-        val asd = findViewById(R.id.asd) as Button
+//        val asd = findViewById(R.id.asd) as Button
         asd.setOnClickListener {
             val tv2 = TextView(this)
             tv2.setTextColor(Color.RED)

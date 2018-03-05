@@ -3,14 +3,26 @@ package com.elriczhan.basecore.net;
 import com.elriczhan.basecore.CoreApplication;
 import com.elriczhan.basecore.utils.LogUtil;
 import com.elriczhan.basecore.utils.NetUtil;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
+import com.google.gson.stream.JsonWriter;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -28,7 +40,8 @@ public class RetrofitManager {
 
     private static Retrofit retrofit = null;
     private static OkHttpClient okHttpClient;
-    private static String baseUrl = "http://www.baidu.com";
+    private static String baseUrl = "";
+    private static Interceptor headerInterceptor;
 
     private RetrofitManager() {
     }
@@ -40,12 +53,73 @@ public class RetrofitManager {
         baseUrl = url;
     }
 
+    public static void addHeaders(final Map<String, String> map) {
+        headerInterceptor = new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                try {
+                    Response.Builder builder = chain.proceed(chain.request()).newBuilder();
+                    for (Map.Entry<String, String> entry : map.entrySet()) {
+                        builder.addHeader(entry.getKey(), entry.getValue());
+                    }
+                    return builder.build();
+                } catch (Exception e) {
+                    LogUtil.e(e.toString());
+                }
+                return chain.proceed(chain.request());
+            }
+        };
+
+        if (okHttpClient != null)
+            okHttpClient = okHttpClient.newBuilder().addInterceptor(headerInterceptor).build();
+        if (retrofit != null)
+            retrofit = retrofit.newBuilder().client(okHttpClient).build();
+
+    }
+
+
+    public static class NullStringToEmptyAdapterFactory<T> implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            Class<T> rawType = (Class<T>) type.getRawType();
+            if (rawType != String.class) {
+                return null;
+            }
+            return (TypeAdapter<T>) new StringNullAdapter();
+        }
+    }
+
+    public static class StringNullAdapter extends TypeAdapter<String> {
+        @Override
+        public String read(JsonReader reader) throws IOException {
+            // TODO Auto-generated method stub
+            if (reader.peek() == JsonToken.NULL) {
+                reader.nextNull();
+                return "";
+            }
+            return reader.nextString();
+        }
+
+        @Override
+        public void write(JsonWriter writer, String value) throws IOException {
+            // TODO Auto-generated method stub
+            if (value == null) {
+                writer.nullValue();
+                return;
+            }
+            writer.value(value);
+        }
+    }
+
     public static Retrofit getInstance() {
         if (retrofit == null) {
             synchronized (RetrofitManager.class) {
                 if (retrofit == null) {
                     retrofit = new Retrofit.Builder()
-                            .addConverterFactory(GsonConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create(new GsonBuilder()
+                                    .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                                    .registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory())
+                                    .create()))
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .client(okhttpInstance())
                             .baseUrl(baseUrl)
@@ -60,20 +134,40 @@ public class RetrofitManager {
         if (okHttpClient == null) {
             synchronized (RetrofitManager.class) {
                 if (okHttpClient == null) {
-                    okHttpClient = new OkHttpClient.Builder()
-                            .connectTimeout(60, TimeUnit.SECONDS)
-                            .readTimeout(5, TimeUnit.SECONDS)
-                            .writeTimeout(5, TimeUnit.SECONDS)
-                            .addInterceptor(httpLoggingInterceptor)
-                            .addInterceptor(cacheInterceptor)
-                            .build();
+                    //cache url
+                    File httpCacheDirectory = new File(CoreApplication.getAppContext().getCacheDir(), "responses");
+                    int cacheSize = 10 * 1024 * 1024; // 10 MiB
+                    Cache cache = new Cache(httpCacheDirectory, cacheSize);
+
+                    if (headerInterceptor == null) {
+                        okHttpClient = new OkHttpClient.Builder()
+                                .connectTimeout(60, TimeUnit.SECONDS)
+                                .readTimeout(10, TimeUnit.SECONDS)
+                                .writeTimeout(10, TimeUnit.SECONDS)
+                                .addInterceptor(httpLoggingInterceptor)
+                                .addInterceptor(cacheInterceptor)
+                                .retryOnConnectionFailure(true)
+                                .cache(cache)
+                                .build();
+                    } else {
+                        okHttpClient = new OkHttpClient.Builder()
+                                .connectTimeout(60, TimeUnit.SECONDS)
+                                .readTimeout(10, TimeUnit.SECONDS)
+                                .writeTimeout(10, TimeUnit.SECONDS)
+                                .addInterceptor(httpLoggingInterceptor)
+                                .addInterceptor(cacheInterceptor)
+                                .addInterceptor(headerInterceptor)
+                                .retryOnConnectionFailure(true)
+                                .cache(cache)
+                                .build();
+                    }
+
                 }
             }
 
         }
         return okHttpClient;
     }
-
 
     private static HttpLoggingInterceptor httpLoggingInterceptor =
             new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -83,32 +177,33 @@ public class RetrofitManager {
                 }
             }).setLevel(HttpLoggingInterceptor.Level.BODY);
 
-    private static final int TIMEOUT_CONNECT = 60; //60秒
-    private static final int TIMEOUT_DISCONNECT = 60 * 60 * 24 * 7; //7天
-
     private static Interceptor cacheInterceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
+            CacheControl.Builder cacheBuilder = new CacheControl.Builder();
+            cacheBuilder.maxAge(0, TimeUnit.SECONDS);
+            cacheBuilder.maxStale(365, TimeUnit.DAYS);
+            CacheControl cacheControl = cacheBuilder.build();
 
+            Request request = chain.request();
             if (!NetUtil.isNetworkAvailable(CoreApplication.getAppContext())) {
-                Request request = chain.request();
-                //离线的时候为7天的缓存。
                 request = request.newBuilder()
-                        .header("Cache-Control", "public, only-if-cached, max-stale=" + TIMEOUT_DISCONNECT)
+                        .cacheControl(cacheControl)
                         .build();
-                return chain.proceed(request);
+            }
+            Response originalResponse = chain.proceed(request);
+            if (NetUtil.isNetworkAvailable(CoreApplication.getAppContext())) {
+                int maxAge = 0; // read from cache
+                return originalResponse.newBuilder()
+                        .removeHeader("Pragma")
+                        .header("Cache-Control", "public ,max-age=" + maxAge)
+                        .build();
             } else {
-                okhttp3.Response originalResponse = chain.proceed(chain.request());
-                String cacheControl = originalResponse.header("Cache-Control");
-                //如果cacheControl为空，就让他TIMEOUT_CONNECT秒的缓存，本例是60秒，方便观察。注意这里的cacheControl是服务器返回的
-                if (cacheControl == null) {
-                    originalResponse = originalResponse.newBuilder()
-                            .header("Cache-Control", "public, max-age=" + TIMEOUT_CONNECT)
-                            .build();
-                    return originalResponse;
-                } else {
-                    return originalResponse;
-                }
+                int maxStale = 60 * 60 * 24 * 7; // tolerate 1-weeks stale
+                return originalResponse.newBuilder()
+                        .removeHeader("Pragma")
+                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                        .build();
             }
         }
     };
@@ -127,6 +222,7 @@ public class RetrofitManager {
             @Override
             public ObservableSource<T> apply(io.reactivex.Observable<T> upstream) {
                 return upstream.subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread());
             }
         };

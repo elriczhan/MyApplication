@@ -81,8 +81,7 @@ public class ToolUtils {
     public static String getUserAgent(Context context) {
         String agent = " Android/" + Build.BRAND + Build.VERSION.RELEASE;
         try {
-            agent = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName
-                    + " Android/" + Build.BRAND + Build.VERSION.RELEASE;
+            agent = agent + "/" + context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

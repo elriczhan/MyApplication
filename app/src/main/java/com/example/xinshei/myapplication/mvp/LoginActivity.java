@@ -1,7 +1,5 @@
 package com.example.xinshei.myapplication.mvp;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,54 +17,39 @@ public class LoginActivity extends BaseMVPActivity<loginPresenter, loginModel> i
     private ProgressBar progressBar;
     private TextView result;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.mvp_login);
-        initView();
-    }
 
     @Override
-    protected View getRootView() {
-        return null;
-    }
-
-    private void initView() {
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        Button login = (Button) findViewById(R.id.login);
-        progressBar = (ProgressBar) findViewById(R.id.progress);
-        result = (TextView) findViewById(R.id.result);
+    protected void initView() {
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        Button login = findViewById(R.id.login);
+        progressBar = findViewById(R.id.progress);
+        result = findViewById(R.id.result);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                presenter.login();
-            }
-        });
-    }
-
-
-    @Override
-    public void showLoading() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressBar.setVisibility(View.VISIBLE);
+                mPresenter.login(LoginActivity.this);
             }
         });
     }
 
     @Override
-    public void hideLoading() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-        });
+    protected void loadData() {
+        ShowSuccessView();
 
     }
+
+    @Override
+    protected View getContentView() {
+        return findViewById(R.id.content);
+    }
+
+    @Override
+    protected int getRootView() {
+        return R.layout.mvp_login;
+    }
+
 
     @Override
     public String getUsername() {

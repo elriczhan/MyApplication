@@ -12,7 +12,7 @@ public class LogUtil {
     }
 
     private static String TAG = "LOG_TAG";
-    private static boolean DEBUG = Constants.DEBUG;
+    private static boolean DEBUG = CoreConstants.DEBUG;
 
     public static void v(String tag, String msg) {
         if (DEBUG) {

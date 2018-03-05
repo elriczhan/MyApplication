@@ -5,7 +5,9 @@ package com.elriczhan.basecore.base;
  */
 
 public interface BaseMVPView {
-    void showLoading();
+    void ShowLoadingView();
 
-    void hideLoading();
+    void ShowErrorView(Exception e);
+
+    void ShowSuccessView();
 }

@@ -2,47 +2,59 @@ package com.elriczhan.basecore.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+import com.elriczhan.basecore.R;
 import com.elriczhan.basecore.utils.LogUtil;
 import com.elriczhan.basecore.utils.TypeUtil;
 import com.elriczhan.basecore.view.ViewController;
 
 
-public abstract class BaseMVPActivity<Presenter extends BasePresenter, Model extends BaseModel> extends AppCompatActivity implements BaseMVPView {
+public abstract class BaseMVPFragment<Presenter extends BasePresenter, Model extends BaseModel> extends Fragment implements BaseMVPView {
     public Presenter mPresenter;
     public Model model;
+    private ViewGroup mRootView;
     private ViewController mViewController;
+    private View mContent;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getRootView());
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        mContent = getRootView(inflater, container);
+        mRootView = (ViewGroup) inflater.inflate(R.layout.layout_frame, container, false);
+        mRootView.addView(mContent);
         mPresenter = TypeUtil.getType(this, 0);
         model = TypeUtil.getType(this, 1);
 //        if (this instanceof BaseMVPView)
 //            LogUtil.e(" presenter--- " + (mPresenter == null) + "----model---" + (model == null));
         mPresenter.attachVM(this, model);
-        mViewController = new ViewController(getContentView(), new View.OnClickListener() {
+        findView(mRootView);
+        return mRootView;
+    }
+
+    protected abstract void findView(View mRootView);
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        mViewController = new ViewController(mContent, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ShowLoadingView();
                 loadData();
             }
         });
-        initView();
-        ShowLoadingView();
+        mViewController.showLoading();
         loadData();
+        super.onActivityCreated(savedInstanceState);
     }
-
-    protected abstract void initView();
 
     protected abstract void loadData();
 
-    protected abstract View getContentView();
+    protected abstract View getRootView(LayoutInflater inflater, ViewGroup container);
 
-    protected abstract int getRootView();
 
     @Override
     public void ShowLoadingView() {
@@ -61,6 +73,8 @@ public abstract class BaseMVPActivity<Presenter extends BasePresenter, Model ext
         showOriginal();
     }
 
+    protected abstract View getContentView(View mRootView);
+
     public void showError(Throwable e) {
         if (mViewController != null) {
             mViewController.showError(e);
@@ -75,16 +89,10 @@ public abstract class BaseMVPActivity<Presenter extends BasePresenter, Model ext
         }
     }
 
-    public void showEmpty()
-    {
-        if (mViewController != null) {
-            mViewController.showEmpty();
-        }
-    }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         if (mPresenter != null)
             mPresenter.detachVM();
     }

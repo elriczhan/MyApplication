@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.util.Log;
 
+import com.elriczhan.basecore.CoreApplication;
+import com.elriczhan.basecore.net.RetrofitManager;
 import com.example.xinshei.myapplication.Dao.DaoMaster;
 import com.example.xinshei.myapplication.Dao.DaoSession;
 import com.umeng.message.IUmengRegisterCallback;
@@ -15,7 +17,7 @@ import com.umeng.message.PushAgent;
  * Created by xinshei on 17/4/6.
  */
 
-public class app extends Application {
+public class app extends CoreApplication {
     public static app app;
     public static DaoSession daoSession;
     public static Activity activity;
@@ -40,6 +42,7 @@ public class app extends Application {
 //                .apply();
         Log.e("asd", "start ---------");
         PushAgent.getInstance(this).onAppStart();
+        RetrofitManager.baseUrl("http://wechat.xin-shei.com/v6/");
 
         PushAgent mPushAgent = PushAgent.getInstance(this);
         mPushAgent.setMessageChannel("TEST");

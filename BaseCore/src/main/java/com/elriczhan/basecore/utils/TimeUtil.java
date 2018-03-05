@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by xinshei on 2018/1/2.
@@ -51,7 +52,8 @@ public class TimeUtil {
      */
     public static String FormatDateyyyyMMdd(String modified_datetime) {
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.SIMPLIFIED_CHINESE);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.SIMPLIFIED_CHINESE);
+        df.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date = null;
         try {
             date = df.parse(modified_datetime);
@@ -80,4 +82,14 @@ public class TimeUtil {
     }
 
 
+    public static String FormatTime(Calendar c) {
+        return c.get(Calendar.YEAR) + "-" + ((c.get(Calendar.MONTH) + 1) < 10 ? "0" + (c.get(Calendar.MONTH) + 1) : (c.get(Calendar.MONTH) + 1))
+                + "-" + (c.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + c.get(Calendar.DAY_OF_MONTH) : c.get(Calendar.DAY_OF_MONTH));
+    }
+
+    public static boolean isSameDay(Calendar calDateA, Calendar calDateB) {
+        return calDateA.get(Calendar.YEAR) == calDateB.get(Calendar.YEAR)
+                && calDateA.get(Calendar.MONTH) == calDateB.get(Calendar.MONTH)
+                && calDateA.get(Calendar.DAY_OF_MONTH) == calDateB.get(Calendar.DAY_OF_MONTH);
+    }
 }

@@ -1,13 +1,15 @@
 package com.example.xinshei.myapplication.mvp;
 
+import android.app.Activity;
 import android.os.SystemClock;
 
 import com.example.xinshei.myapplication.mvp.contract.LoginContract;
 
 public class loginPresenter extends LoginContract.LoginPresenter {
     @Override
-    public void login() {
-        mView.showLoading();
+    public void login(final Activity activity) {
+        mView.ShowLoadingView();
+
         new Thread() {
             @Override
             public void run() {
@@ -16,15 +18,17 @@ public class loginPresenter extends LoginContract.LoginPresenter {
                     @Override
                     public void onSuccess() {
                         mView.showResult("login success");
-                        mView.hideLoading();
+                        mView.ShowSuccessView();
+
                     }
 
                     @Override
                     public void onFailed() {
                         mView.showResult("try again!!!!");
-                        mView.hideLoading();
+                        mView.ShowErrorView(new Exception("try again!!!"));
+
                     }
-                });
+                }, activity);
 //                if (mModel.login()) {
 //                    mView.showResult("login success");
 //                } else {

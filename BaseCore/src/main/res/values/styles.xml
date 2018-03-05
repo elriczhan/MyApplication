@@ -1,11 +1,13 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="EnterExitStyle" parent="android:Animation">
+        <!--@android:activityOpenEnterAnimation，// 表示新的activity创建进入效果-->
+        <!--@android:activityOpenExitAnimation，// 表示activity还没有finish()下退出效果-->
+        <!--@android:activityCloseEnterAnimation，// 表示上一个 activity返回进入效果-->
+        <!--@android:activityCloseExitAnimation ，// 表示的是activity finish()之后退出效果...-->
+        <item name="android:activityOpenEnterAnimation">@anim/enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/stay</item>
+        <item name="android:activityCloseEnterAnimation">@anim/stay</item>
+        <item name="android:activityCloseExitAnimation">@anim/exit</item>
     </style>
-
 </resources>
