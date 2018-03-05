@@ -10,11 +10,10 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.util.TypedValue
-import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.example.xinshei.myapplication.R
+import com.example.xinshei.myapplication.WaveView
 import kotlinx.android.synthetic.main.activity_kotlin.*
 import org.jetbrains.anko.displayMetrics
 import org.jetbrains.anko.doAsync
@@ -51,9 +50,9 @@ class kotlin : AppCompatActivity() {
          * comment as well
          */
         tv.setText(getString(R.string.fk))
-//        val waveview = WaveView(applicationContext) as WaveView
-//        waveview.setBorder(10,Color.BLACK)
-//        layout.addView(waveview)
+        val waveview = WaveView(applicationContext) as WaveView
+        waveview.setBorder(10, Color.BLACK)
+        layout.addView(waveview)
 
         layout.addView(tv)
         println(method(1, 2))
