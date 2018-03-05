@@ -28,7 +28,7 @@ public class RetrofitManager {
 
     private static Retrofit retrofit = null;
     private static OkHttpClient okHttpClient;
-    private static String baseUrl = "";
+    private static String baseUrl = "http://www.baidu.com";
 
     private RetrofitManager() {
     }

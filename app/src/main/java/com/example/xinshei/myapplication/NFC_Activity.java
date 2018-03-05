@@ -5,6 +5,9 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
+import android.nfc.Tag;
+import android.nfc.tech.NfcA;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,6 +20,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.elriczhan.basecore.utils.LogUtil;
+
+import java.io.IOException;
 import java.nio.charset.Charset;
 
 public class NFC_Activity extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback,
@@ -30,14 +36,52 @@ public class NFC_Activity extends AppCompatActivity implements NfcAdapter.Create
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc_);
         mInfoText = (TextView) findViewById(R.id.mInfoText);
+
+
+//        NfcManager manager = new NfcManager();
+//
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mNfcAdapter == null) {
             Toast.makeText(this, "not support NFC", Toast.LENGTH_LONG).show();
         } else {
             mNfcAdapter.setOnNdefPushCompleteCallback(this, this);
             mNfcAdapter.setNdefPushMessageCallback(this, this); //注册NDEF回调消息
-        }
+            Toast.makeText(this, "good NFC", Toast.LENGTH_LONG).show();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                mNfcAdapter.enableReaderMode(NFC_Activity.this, new NfcAdapter.ReaderCallback() {
+                    @Override
+                    public void onTagDiscovered(Tag tag) {
+                        LogUtil.e("-------------------***********************");
+                        LogUtil.e(tag.toString());
+                        LogUtil.e(tag.getId() + "");
+                        LogUtil.e(tag.getTechList().toString());
+                        String[] techList = tag.getTechList();
+                        for (String string : techList) {
+                            LogUtil.e(string + " ??");
+                        }
+                        mInfoText.setText(tag.toString());
+                        try {
+                            NfcA.get(tag).transceive(NfcA.get(tag).getAtqa());
+                            LogUtil.e(" down ???????????????????????????????????????????????????????????");
 
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            LogUtil.e(e.toString() + " ???????????????????????????????????????????????????????????");
+                        }
+                        LogUtil.e("-------------------***********************");
+                    }
+                }, NfcAdapter.FLAG_READER_NFC_A, new Bundle());
+            }
+
+
+            LogUtil.e(mNfcAdapter.isNdefPushEnabled() + "  enable??");
+        }
+//        NdefMessage message = new NdefMessage();
+//        mNfcAdapter.setNdefPushMessage();
+
+//        NfcFCardEmulation.getInstance(mNfcAdapter).enableService()
+//        NfcF.get("asd").transceive()
+//        NfcA.get("asd").transceive()
     }
 
     @Override
@@ -46,6 +90,7 @@ public class NFC_Activity extends AppCompatActivity implements NfcAdapter.Create
         time.setToNow();
         String text = ("Beam me up!\n\n" +
                 "Beam Time: " + time.format("%H:%M:%S"));
+        mInfoText.setText(text);
         NdefMessage msg = new NdefMessage(
                 new NdefRecord[]{createMimeRecord(
                         "application/com.example.android.beam", text.getBytes())

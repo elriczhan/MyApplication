@@ -101,24 +101,24 @@ public class ChartActivity extends Activity {
     }
 
 
+    private float saveY = 0;
+
     private void setData(int count, float range) {
 
         ArrayList<Entry> values = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            Entry entry;
-            if (values.size() > 0) {
-                entry = values.get(i - 1);
-            } else {
-                entry = new Entry(0, 0);
+            if (i > 50 && i < 550) {
+                continue;
             }
             float val = 0;
             int a = (int) Math.floor(Math.random() * range);
             if (a % 2 == 0) {
-                val = entry.getY() - 3;
+                val = saveY - 3;
             } else {
-                val = entry.getY() + 3;
+                val = saveY + 3;
             }
+            saveY = val;
 
 //            values.add(new Entry(i, val, getResources().getDrawable(R.mipmap.ic_launcher)));
             values.add(new Entry(i, val, null));

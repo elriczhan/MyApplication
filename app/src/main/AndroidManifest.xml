@@ -22,7 +22,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppThemea">
+
         <activity android:name=".test1" />
         <activity android:name=".fragmentActivity" />
         <activity
@@ -101,7 +102,9 @@
         <activity android:name=".newGlide" />
         <activity android:name=".ViewControllerActivity" />
         <activity android:name=".update.UpdateActivity" />
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <!-- 关键部分 开始 -->
@@ -113,6 +116,7 @@
         </activity>
         <activity android:name=".StatusFragment" />
         <activity android:name=".StatusBarFragmentActivity"></activity>
+        <activity android:name=".SmartTableViewActivity" />
     </application>
 
 </manifest>

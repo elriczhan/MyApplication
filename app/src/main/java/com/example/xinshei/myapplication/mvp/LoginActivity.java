@@ -26,6 +26,11 @@ public class LoginActivity extends BaseMVPActivity<loginPresenter, loginModel> i
         initView();
     }
 
+    @Override
+    protected View getRootView() {
+        return null;
+    }
+
     private void initView() {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
@@ -36,7 +41,7 @@ public class LoginActivity extends BaseMVPActivity<loginPresenter, loginModel> i
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.login();
+//                presenter.login();
             }
         });
     }
