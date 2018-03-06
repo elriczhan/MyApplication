@@ -106,7 +106,7 @@ class kotlin : AppCompatActivity() {
             println(" is &a " + (a + a) + a)
         }
 
-        val list = listOf("apple", "banana", "kiwi")
+        val list: List<String> = listOf("apple", "banana", "kiwi")
         for (a in list.indices) {
             println("in position $a is ${list[a]}")
 
@@ -115,10 +115,18 @@ class kotlin : AppCompatActivity() {
                 else -> println("something else")
             }
         }
+
+        //user mutable list set map to adding removing elements from it
+        val mutableList: MutableList<Int> = mutableListOf()
+        mutableList.add(1)
+        mutableList.add(2)
+        mutableList.add(3)
+        mutableList.remove(1)
+        mutableList[2]
+        mutableList.clear()
     }
 
     fun lol(): String {
-
         return "asd"
     }
 
