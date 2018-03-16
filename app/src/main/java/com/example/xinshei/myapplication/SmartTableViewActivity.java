@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * Created by xinshei on 2018/3/5.
  */
 
-class SmartTableViewActivity extends AppCompatActivity {
+public class SmartTableViewActivity extends AppCompatActivity {
 
     private SmartTable smartTable;
 

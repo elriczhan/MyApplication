@@ -37,7 +37,7 @@ public class notification extends Activity {
         Bitmap img = BitmapFactory.decodeResource(res, R.mipmap.ic_launcher);
 
         NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
+                new NotificationCompat.Builder(this,"asd")
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setLargeIcon(img)
                         .setContentTitle("My notification")

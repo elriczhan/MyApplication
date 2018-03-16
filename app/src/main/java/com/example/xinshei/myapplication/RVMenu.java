@@ -61,6 +61,7 @@ public class RVMenu extends AppCompatActivity {
         list.add(UpdateActivity.class);
         list.add(StatusBarFragmentActivity.class);
         list.add(SmartTableViewActivity.class);
+        list.add(notification_eight_activity.class);
 
 
         //版本管理测试 test123 4 tag2 hahaha22222

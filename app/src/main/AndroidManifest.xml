@@ -114,9 +114,11 @@
                 <!-- 关键部分 结束 -->
             </intent-filter>
         </activity>
-        <activity android:name=".StatusFragment" />
-        <activity android:name=".StatusBarFragmentActivity"></activity>
+        <activity android:name=".StatusBarFragmentActivity" />
         <activity android:name=".SmartTableViewActivity" />
+        <activity
+            android:name=".notification_eight_activity"
+            android:parentActivityName=".RVMenu" />
     </application>
 
 </manifest>
