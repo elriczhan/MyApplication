@@ -48,6 +48,8 @@ public class notification_eight_activity extends AppCompatActivity {
                 clearData();
             }
         });
+
+
     }
 
     private void clearData() {

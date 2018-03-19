@@ -119,6 +119,8 @@
         <activity
             android:name=".notification_eight_activity"
             android:parentActivityName=".RVMenu" />
+        <activity android:name=".CustomizeKeyboardActivity" />
+
     </application>
 
 </manifest>
