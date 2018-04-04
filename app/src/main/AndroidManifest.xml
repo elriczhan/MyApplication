@@ -121,6 +121,8 @@
             android:parentActivityName=".RVMenu" />
         <activity android:name=".CustomizeKeyboardActivity" />
 
+        <activity android:name=".BitPayTestActivity" />
+
     </application>
 
 </manifest>

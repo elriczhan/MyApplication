@@ -11,8 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
-import java.util.List;
-
 /**
  * Created by xinshei on 2018/3/19.
  */
@@ -26,11 +24,11 @@ public class CustomizeKeyboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_keyboard);
 
-        Keyboard keyboard = new Keyboard(this, R.xml.keyboard);
+        Keyboard keyboard = new Keyboard(this, R.xml.keyboard_number);
 
         keyboardView = findViewById(R.id.kbv_keyboard);
         keyboardView.setKeyboard(keyboard);
-        keyboardView.setPreviewEnabled(true);
+        keyboardView.setPreviewEnabled(false);
 
         final EditText ed = findViewById(R.id.et_cus);
         ed.setInputType(InputType.TYPE_NULL);
@@ -54,6 +52,7 @@ public class CustomizeKeyboardActivity extends AppCompatActivity {
                     public void onKey(int primaryCode, int[] keyCodes) {
                         Editable editable = ed.getText();
                         int start = ed.getSelectionStart();
+
                         if (primaryCode == Keyboard.KEYCODE_CANCEL) {// 完成
                             hideKeyboard();
                         } else if (primaryCode == Keyboard.KEYCODE_DELETE) {// 回退
@@ -118,8 +117,6 @@ public class CustomizeKeyboardActivity extends AppCompatActivity {
         });
 
 
-
-
     }
 
     public void showKeyboard() {
@@ -136,9 +133,9 @@ public class CustomizeKeyboardActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isword(String str){
+    private boolean isword(String str) {
         String wordstr = "abcdefghijklmnopqrstuvwxyz";
-        if (wordstr.indexOf(str.toLowerCase())>-1) {
+        if (wordstr.indexOf(str.toLowerCase()) > -1) {
             return true;
         }
         return false;

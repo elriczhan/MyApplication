@@ -1,0 +1,85 @@
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:horizontalGap="0px"
+    android:keyHeight="50dp"
+    android:keyWidth="12.5%p"
+    android:verticalGap="10px">
+
+    <Row android:rowEdgeFlags="top">
+        <Key
+            android:codes="49"
+            android:horizontalGap="25%p"
+            android:keyEdgeFlags="left"
+            android:keyLabel="1" />
+
+        <Key
+            android:codes="50"
+            android:keyLabel="2" />
+        <Key
+            android:codes="51"
+            android:keyLabel="3" />
+        <Key
+            android:codes="-2"
+            android:keyEdgeFlags="right"
+            android:keyIcon="@mipmap/ic_launcher" />
+    </Row>
+
+    <Row>
+        <Key
+            android:codes="52"
+            android:horizontalGap="25%p"
+            android:keyEdgeFlags="left"
+            android:keyLabel="4" />
+        <Key
+            android:codes="53"
+            android:keyLabel="5" />
+        <Key
+            android:codes="54"
+            android:keyLabel="6" />
+
+        <Key
+            android:codes="-5"
+            android:isRepeatable="true"
+            android:keyEdgeFlags="right"
+            android:keyLabel="删除" />
+    </Row>
+
+    <Row>
+        <Key
+            android:codes="55"
+            android:horizontalGap="25%p"
+            android:keyEdgeFlags="left"
+            android:keyLabel="7" />
+        <Key
+            android:codes="56"
+            android:keyLabel="8" />
+        <Key
+            android:codes="57"
+            android:keyLabel="9" />
+
+        <Key
+            android:codes="-3"
+            android:isRepeatable="true"
+            android:keyEdgeFlags="right"
+            android:keyLabel="好了" />
+    </Row>
+
+    <Row android:rowEdgeFlags="bottom">
+        <Key
+            android:codes="46"
+            android:horizontalGap="25%p"
+            android:keyEdgeFlags="left"
+            android:keyLabel="." />
+        <Key
+            android:codes="48"
+            android:keyLabel="0" />
+        <Key
+            android:codes="57419"
+            android:keyLabel="左" />
+
+        <Key
+            android:codes="57421"
+            android:isRepeatable="true"
+            android:keyEdgeFlags="right"
+            android:keyLabel="右" />
+    </Row>
+</Keyboard>
