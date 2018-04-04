@@ -11,7 +11,7 @@
         android:text="123"
         android:textColor="@color/red" />
 
-    <com.example.xinshei.myapplication.views.GranzortView
+    <com.example.elric.myapplication.views.GranzortView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/mInfoText" />

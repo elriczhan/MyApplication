@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.xinshei.myapplication.views.FlowerView
+    <com.example.elric.myapplication.views.FlowerView
         android:id="@+id/flower"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -33,7 +33,7 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <com.example.xinshei.myapplication.views.CusImageShadowView
+                <com.example.elric.myapplication.views.CusImageShadowView
                     android:id="@+id/cimage"
                     android:layout_width="150dp"
                     android:layout_height="150dp"

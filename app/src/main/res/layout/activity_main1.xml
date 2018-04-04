@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <com.example.xinshei.myapplication.WaveView
+    <com.example.elric.myapplication.WaveView
         android:id="@+id/wave"
         android:layout_width="300dp"
         android:layout_height="300dp"

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.xinshei.myapplication.SnakeActivity">
+    tools:context="com.example.elric.myapplication.SnakeActivity">
 
-    <com.example.xinshei.myapplication.views.SnakeView
+    <com.example.elric.myapplication.views.SnakeView
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,6 +25,6 @@
             android:background="@color/red" />
 
 
-    </com.example.xinshei.myapplication.views.SnakeView>
+    </com.example.elric.myapplication.views.SnakeView>
 
 </android.support.constraint.ConstraintLayout>

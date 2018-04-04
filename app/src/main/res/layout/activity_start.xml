@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.xinshei.myapplication.StartActivity">
+    tools:context="com.example.elric.myapplication.StartActivity">
 
-    <com.example.xinshei.myapplication.StarViewGroup
+    <com.example.elric.myapplication.StarViewGroup
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

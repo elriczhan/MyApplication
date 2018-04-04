@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.xinshei.myapplication.views.DragCardView
+    <com.example.elric.myapplication.views.DragCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp">
@@ -149,5 +149,5 @@
             android:text="6\n6"
             android:textColor="@color/blue"
             android:textSize="14sp" />
-    </com.example.xinshei.myapplication.views.DragCardView>
+    </com.example.elric.myapplication.views.DragCardView>
 </LinearLayout>

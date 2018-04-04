@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.xinshei.myapplication.radar.RadarView
+    <com.example.elric.myapplication.radar.RadarView
         android:id="@+id/radarView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
