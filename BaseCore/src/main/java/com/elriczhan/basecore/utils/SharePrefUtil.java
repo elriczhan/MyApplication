@@ -168,6 +168,35 @@ public class SharePrefUtil {
     }
 
     /**
+     * 将对象进行base64编码后保存到SharePref中
+     *
+     * @param context
+     * @param key
+     * @param object
+     */
+    public static void saveObj(Context context, String key, Object object) {
+        if (sp == null)
+            sp = context.getSharedPreferences(SP_NAME, 0);
+
+        String value = GsonUtils.BeanToJson(object);
+        saveString(context, key, value);
+    }
+
+    /**
+     * 将SharePref中经过base64编码的对象读取出来
+     *
+     * @param context
+     * @param key
+     * @return
+     */
+    public static Object getObj(Context context, String key, Class clazz) {
+        if (sp == null)
+            sp = context.getSharedPreferences(SP_NAME, 0);
+        return GsonUtils.json2Bean(getString(context, key, ""), clazz);
+    }
+
+
+    /**
      * 创建一个解决SharedPreferencesCompat.apply方法的一个兼容类
      *
      * @author zhy
@@ -206,6 +235,8 @@ public class SharePrefUtil {
             }
             editor.commit();
         }
+
+
     }
 
 }

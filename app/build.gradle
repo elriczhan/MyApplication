@@ -135,7 +135,6 @@ dependencies {
 
     compile 'com.github.huangyanbin:SmartTable:1.8.8'
 
-
     //bitpay stuff
     compile 'com.bitpay:android-sdk:1.0.0@aar'
     compile 'com.google:bitcoinj:0.11.3'
@@ -145,5 +144,9 @@ dependencies {
     compile 'commons-codec:commons-codec:1.9'
     compile 'com.google.zxing:core:2.0'
     ///bitpay stuff
+
+//    compile 'com.github.livechat:chat-window-android:v2.0.0'
+
+    compile 'org.greenrobot:eventbus:3.1.1'
 
 }

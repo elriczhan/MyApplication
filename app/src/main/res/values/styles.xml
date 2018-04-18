@@ -55,4 +55,13 @@
         <item name="android:textColor">@drawable/text</item>
     </style>
 
+    <style name="AppThemea.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppThemea.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppThemea.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

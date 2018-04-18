@@ -29,6 +29,11 @@ public class ViewController {
     private LinearLayout emptyLayout;
     private LinearLayout errorLayout;
     private View loadingLayout;
+    private boolean isShow = false;
+
+    public boolean isShow() {
+        return isShow;
+    }
 
     public ViewController(View original, View.OnClickListener onClickListener) {
         this.mOriginalView = original;
@@ -45,6 +50,7 @@ public class ViewController {
     }
 
     public void showOriginal() {
+        isShow = true;
         showView(mOriginalView);
     }
 
@@ -62,6 +68,7 @@ public class ViewController {
     }
 
     public void showEmpty() {
+        isShow = false;
         if (emptyLayout == null) {
             emptyLayout = new LinearLayout(mContext);
             emptyLayout.setGravity(Gravity.CENTER);
@@ -73,7 +80,21 @@ public class ViewController {
         showView(emptyLayout);
     }
 
+    public void showEmpty(String msg) {
+        isShow = false;
+        if (emptyLayout == null) {
+            emptyLayout = new LinearLayout(mContext);
+            emptyLayout.setGravity(Gravity.CENTER);
+            TextView textView = new TextView(mContext);
+            textView.setText(msg);
+            textView.setOnClickListener(onClickListener);
+            emptyLayout.addView(textView);
+        }
+        showView(emptyLayout);
+    }
+
     public void showLoading() {
+        isShow = false;
         if (loadingLayout == null) {
             loadingLayout = LayoutInflater.from(mContext).inflate(R.layout.loading_view, mParent, false);
         }
@@ -81,6 +102,7 @@ public class ViewController {
     }
 
     public void showError(Throwable e) {
+        isShow = false;
         if (errorLayout == null) {
             errorLayout = new LinearLayout(mContext);
             errorLayout.setGravity(Gravity.CENTER);

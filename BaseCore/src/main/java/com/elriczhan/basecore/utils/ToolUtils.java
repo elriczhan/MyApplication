@@ -2,8 +2,12 @@ package com.elriczhan.basecore.utils;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.provider.Settings;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -86,5 +90,34 @@ public class ToolUtils {
             e.printStackTrace();
         }
         return agent;
+    }
+
+    public static String getDeviceId(Context context) {
+        String mac = ((WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE)).getConnectionInfo().getMacAddress();
+        String androidId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        String m_szLongID = mac + androidId;
+        LogUtil.e("mac: " + mac + "\n" + "andoirid: " + androidId);
+        // compute md5
+        MessageDigest m = null;
+        try {
+            m = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        m.update(m_szLongID.getBytes(), 0, m_szLongID.length());
+        // get md5 bytes
+        byte p_md5Data[] = m.digest();
+        // create a hex string
+        String m_szUniqueID = "";
+        for (int i = 0; i < p_md5Data.length; i++) {
+            int b = (0xFF & p_md5Data[i]);
+            // if it is a single digit, make sure it have 0 in front (proper padding)
+            if (b <= 0xF)
+                m_szUniqueID += "0";
+            // add number to string
+            m_szUniqueID += Integer.toHexString(b);
+        }   // hex string to uppercase
+        return m_szUniqueID.toUpperCase();
     }
 }

@@ -64,6 +64,7 @@ public class RVMenu extends AppCompatActivity {
         list.add(notification_eight_activity.class);
         list.add(CustomizeKeyboardActivity.class);
         list.add(BitPayTestActivity.class);
+        list.add(EventActivity.class);
 
 
         //版本管理测试 test123 4 tag2 hahaha22222

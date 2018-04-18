@@ -19,6 +19,9 @@ public abstract class BaseMVPFragment<Presenter extends BasePresenter, Model ext
     private ViewGroup mRootView;
     private ViewController mViewController;
     private View mContent;
+    private boolean showOnce = true;
+    private boolean isCreated = false;
+    private boolean isResume = false;
 
     @Nullable
     @Override
@@ -37,6 +40,32 @@ public abstract class BaseMVPFragment<Presenter extends BasePresenter, Model ext
 
     protected abstract void findView(View mRootView);
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isResume = true;
+        if (getUserVisibleHint() && showOnce && isCreated) {
+            showOnce = false;
+            loadData();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        isResume = false;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint() && showOnce && isCreated && isResume) {
+            showOnce = false;
+            loadData();
+        }
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         mViewController = new ViewController(mContent, new View.OnClickListener() {
@@ -47,7 +76,7 @@ public abstract class BaseMVPFragment<Presenter extends BasePresenter, Model ext
             }
         });
         mViewController.showLoading();
-        loadData();
+        isCreated = true;
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -62,6 +91,19 @@ public abstract class BaseMVPFragment<Presenter extends BasePresenter, Model ext
             mViewController.showLoading();
         }
     }
+
+    public void showEmpty() {
+        if (mViewController != null) {
+            mViewController.showEmpty();
+        }
+    }
+
+    public void showEmpty(String msg) {
+        if (mViewController != null) {
+            mViewController.showEmpty(msg);
+        }
+    }
+
 
     @Override
     public void ShowErrorView(Exception e) {

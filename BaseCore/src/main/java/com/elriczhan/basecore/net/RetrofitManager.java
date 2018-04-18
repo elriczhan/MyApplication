@@ -46,11 +46,12 @@ public class RetrofitManager {
     private RetrofitManager() {
     }
 
-    public static void baseUrl(String url) {
-        if (retrofit != null) {
-            retrofit.newBuilder().baseUrl(url).build();
-        }
+    public static Retrofit baseUrl(String url) {
         baseUrl = url;
+        if (retrofit != null) {
+            return retrofit.newBuilder().baseUrl(url).build();
+        }
+        return getInstance();
     }
 
     public static void addHeaders(final Map<String, String> map) {
@@ -58,11 +59,13 @@ public class RetrofitManager {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 try {
-                    Response.Builder builder = chain.proceed(chain.request()).newBuilder();
+                    Request.Builder builder = chain.request().newBuilder();
                     for (Map.Entry<String, String> entry : map.entrySet()) {
                         builder.addHeader(entry.getKey(), entry.getValue());
+//                        LogUtil.e("header " + entry.getKey() + " " + entry.getValue());
                     }
-                    return builder.build();
+                    Request request = builder.build();
+                    return chain.proceed(request);
                 } catch (Exception e) {
                     LogUtil.e(e.toString());
                 }
@@ -142,9 +145,10 @@ public class RetrofitManager {
                     if (headerInterceptor == null) {
                         okHttpClient = new OkHttpClient.Builder()
                                 .connectTimeout(60, TimeUnit.SECONDS)
-                                .readTimeout(10, TimeUnit.SECONDS)
-                                .writeTimeout(10, TimeUnit.SECONDS)
+                                .readTimeout(60, TimeUnit.SECONDS)
+                                .writeTimeout(60, TimeUnit.SECONDS)
                                 .addInterceptor(httpLoggingInterceptor)
+//                                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                                 .addInterceptor(cacheInterceptor)
                                 .retryOnConnectionFailure(true)
                                 .cache(cache)
@@ -152,9 +156,10 @@ public class RetrofitManager {
                     } else {
                         okHttpClient = new OkHttpClient.Builder()
                                 .connectTimeout(60, TimeUnit.SECONDS)
-                                .readTimeout(10, TimeUnit.SECONDS)
-                                .writeTimeout(10, TimeUnit.SECONDS)
+                                .readTimeout(60, TimeUnit.SECONDS)
+                                .writeTimeout(60, TimeUnit.SECONDS)
                                 .addInterceptor(httpLoggingInterceptor)
+//                                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                                 .addInterceptor(cacheInterceptor)
                                 .addInterceptor(headerInterceptor)
                                 .retryOnConnectionFailure(true)
