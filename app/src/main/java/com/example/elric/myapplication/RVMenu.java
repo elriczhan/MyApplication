@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.elric.myapplication.Dao.GreenDaoLearnActivity;
+import com.example.elric.myapplication.threadpool.ThreadPoolActivity;
 import com.example.elric.myapplication.update.UpdateActivity;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
@@ -65,6 +66,9 @@ public class RVMenu extends AppCompatActivity {
         list.add(CustomizeKeyboardActivity.class);
         list.add(BitPayTestActivity.class);
         list.add(EventActivity.class);
+        list.add(CustomProgressBarActivity.class);
+        list.add(ThreadPoolActivity.class);
+        list.add(AssertsCopyActivity.class);
 
 
         //版本管理测试 test123 4 tag2 hahaha22222
