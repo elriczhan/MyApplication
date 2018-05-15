@@ -34,5 +34,10 @@
         android:layout_width="150dp"
         android:layout_height="150dp" />
 
+    <com.example.elric.myapplication.CustomButtonProgress2
+        android:id="@+id/cbp2"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
 
 </LinearLayout>

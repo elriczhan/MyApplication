@@ -1,12 +1,15 @@
 package com.example.elric.myapplication;
 
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.elriczhan.basecore.utils.LogUtil;
 
 import java.io.File;
@@ -15,12 +18,15 @@ import java.io.InputStream;
 
 public class AssertsCopyActivity extends AppCompatActivity {
 
+    private ImageView image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asserts_copy);
         Button copy = findViewById(R.id.copy);
         Button list = findViewById(R.id.list);
+        image = findViewById(R.id.image);
 
 
         copy.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +62,7 @@ public class AssertsCopyActivity extends AppCompatActivity {
                 LogUtil.e(" got it " + f.getName());
                 LogUtil.e(" got it " + f.getName());
                 LogUtil.e(" got it " + f.getName());
+                Glide.with(getApplicationContext()).asGif().load(f).into(image);
             }
         }
 
