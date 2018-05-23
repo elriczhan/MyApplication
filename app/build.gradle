@@ -119,8 +119,8 @@ dependencies {
     compile 'com.android.support:palette-v7:25.1.1'
     compile 'org.greenrobot:greendao:3.2.2'
     compile 'com.zhy:flowlayout-lib:1.0.3'
-
     compile 'com.dingmouren.paletteimageview:paletteimageview:1.0.7'
+
     //anko
 
     //anko
@@ -131,8 +131,6 @@ dependencies {
     //anko
     compile "org.jetbrains.anko:anko-commons:$anko_version"
     compile "org.jetbrains.anko:anko-coroutines:$anko_version"
-
-
     compile 'com.github.huangyanbin:SmartTable:1.8.8'
 
     //bitpay stuff
@@ -143,10 +141,11 @@ dependencies {
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
     compile 'commons-codec:commons-codec:1.9'
     compile 'com.google.zxing:core:2.0'
+
     ///bitpay stuff
 
-//    compile 'com.github.livechat:chat-window-android:v2.0.0'
-
+    //    compile 'com.github.livechat:chat-window-android:v2.0.0'
     compile 'org.greenrobot:eventbus:3.1.1'
-
+//    implementation files('libs/mysql-connector-java-8.0.9-rc-bin.jar')
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.42'
 }

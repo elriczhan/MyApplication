@@ -69,6 +69,7 @@ public class RVMenu extends AppCompatActivity {
         list.add(CustomProgressBarActivity.class);
         list.add(ThreadPoolActivity.class);
         list.add(AssertsCopyActivity.class);
+        list.add(MYSQLActivity.class);
 
 
         //版本管理测试 test123 4 tag2 hahaha22222

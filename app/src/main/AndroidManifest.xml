@@ -126,7 +126,8 @@
             android:theme="@style/AppThemea.NoActionBar" />
         <activity android:name=".CustomProgressBarActivity" />
         <activity android:name=".threadpool.ThreadPoolActivity" />
-        <activity android:name=".AssertsCopyActivity"></activity>
+        <activity android:name=".AssertsCopyActivity" />
+        <activity android:name=".MYSQLActivity"></activity>
     </application>
 
 </manifest>

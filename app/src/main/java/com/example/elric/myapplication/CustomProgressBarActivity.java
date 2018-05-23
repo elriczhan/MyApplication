@@ -11,6 +11,7 @@ public class CustomProgressBarActivity extends AppCompatActivity {
     private com.example.elric.myapplication.customProgress customProgress;
     private CustomButtonProgress cbp;
     private CustomButtonProgress2 cbp2;
+    private CustomButtonProgress3 cbp3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class CustomProgressBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_progress_bar);
         customProgress = findViewById(R.id.cp_asd);
         cbp2 = findViewById(R.id.cbp2);
+        cbp3 = findViewById(R.id.cbp3);
         cbp = findViewById(R.id.cbp);
         SeekBar seekBar = findViewById(R.id.sk_asd);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -26,6 +28,7 @@ public class CustomProgressBarActivity extends AppCompatActivity {
                 customProgress.setProgress(progress);
                 cbp.setProgress(progress);
                 cbp2.setProgress(progress);
+                cbp3.setProgress(progress);
             }
 
             @Override
