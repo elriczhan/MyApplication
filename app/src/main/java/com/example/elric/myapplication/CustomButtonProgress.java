@@ -1,6 +1,8 @@
 package com.example.elric.myapplication;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -33,6 +35,7 @@ public class CustomButtonProgress extends View {
     private float[] pos;
     private LinearGradient mLinearGradient;
     private PathMeasure pm;
+    private Bitmap bitmap;
 
     public CustomButtonProgress(Context context) {
         super(context);
@@ -79,6 +82,8 @@ public class CustomButtonProgress extends View {
 
         path = new Path();
         path.setFillType(Path.FillType.EVEN_ODD);
+
+        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
     }
 
     @Override
@@ -125,6 +130,13 @@ public class CustomButtonProgress extends View {
             canvas.drawCircle(pos[0], pos[1], 20, paint2);
         }
 
+        canvas.save();
+
+        canvas.rotate(progress, centerX, centerY);
+//        canvas.drawCircle(50, 50, 10, paint5);
+        canvas.drawBitmap(bitmap, centerX - bitmap.getWidth() / 2, 50, paint5);
+
+        canvas.restore();
         super.onDraw(canvas);
     }
 
