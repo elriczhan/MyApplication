@@ -125,4 +125,9 @@ public class CustomButtonProgress3 extends View {
         this.progress = (float) (progress * 3.6);
         postInvalidate();
     }
+
+    public float getProgress()
+    {
+        return progress;
+    }
 }
