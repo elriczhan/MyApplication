@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.elriczhan.basecore.utils.LogUtil;
+
 /**
  * Created by xinshei on 2018/5/28.
  */
@@ -71,6 +73,12 @@ public class CustomButtonProgress4 extends ViewGroup {
         View child2 = getChildAt(1);
         childMeasureWidth = child2.getMeasuredWidth();
         childMeasureHeight = child2.getMeasuredHeight();
+        int activity_horizontal_margin = R.dimen.activity_horizontal_margin;
+        LogUtil.e("this should be 16dp or 64 but " + activity_horizontal_margin);
+        LogUtil.e("this should be 16dp or 64 but " + getResources().getDimension(R.dimen.activity_horizontal_margin));
+        LogUtil.e("this should be 16dp or 64 but " + activity_horizontal_margin);
+        LogUtil.e("this should be 16dp or 64 but " + activity_horizontal_margin);
+        LogUtil.e("this should be 16dp or 64 but " + activity_horizontal_margin);
 
         float x = (float) (getWidth() / 2 + Math.sin(Math.PI / 180 * (-getProgress() + 180)) * getWidth() / 3);
         float y = (float) (getHeight() / 2 + Math.cos(Math.PI / 180 * (-getProgress() + 180)) * getHeight() / 3);
